@@ -1,8 +1,8 @@
-// import { LayoutProvider } from '@/components/LayoutProvider';
+import { MobileLayoutProvider } from '@/components/MobileLayout';
 import { store } from "@/controller/store";
 import "@/styles/app.css";
 import withTheme from '@/theme';
-import 'antd/dist/reset.css';
+// import 'antd-mobile/dist/reset.css';
 import type { AppProps } from 'next/app';
 import Router from "next/router";
 // import NProgress from "nprogress";
@@ -50,11 +50,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
                 {
 
-                    // withTheme(<LayoutProvider>
+                    withTheme(<MobileLayoutProvider>
 
-                    <Component {...pageProps} />
+                        <Component {...pageProps} />
 
-                    // </LayoutProvider>)
+                    </MobileLayoutProvider>)
                 }
 
             </div>
