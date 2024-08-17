@@ -4,6 +4,8 @@ import {
 } from "@reduxjs/toolkit";
 
 export const actionNames = {
+    createTemplateAction: "createTemplateAction",
+    loadMyTemplatesAction: "loadMyTemplatesAction",
     mintNFTAction: "mintNFTAction",
     
 }
@@ -15,6 +17,8 @@ type Processes = {
 
 const initialState: Processes = {
     mintNFTAction: false,
+    createTemplateAction: false,
+    loadMyTemplatesAction: false
 }
 
 export const processesSlice = createSlice({

@@ -1,6 +1,6 @@
 // require("dotenv").config();
 module.exports = {
-    output: "export",
+    // output: "export",
     reactStrictMode: false,
     webpack: (config, { dev }) => {
         if (dev) {

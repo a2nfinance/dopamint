@@ -2,11 +2,12 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 
 
 import processReducer from './process/processSlice';
-
+import templateReducer from './template/templateSlice';
 export function makeStore() {
     return configureStore({
         reducer: {
-            process: processReducer
+            process: processReducer,
+            template: templateReducer,
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({

@@ -15,11 +15,12 @@ export const MobileLayoutProvider = (props: Props) => {
         <Layout>
             <Content
                 style={{
-                    margin: '15% 16px 15% 16px',
+                    margin: '20px 16px 20px 16px',
                     padding: 16,
                     boxSizing: "border-box",
                     marginRight: "auto",
-                    marginLeft: "auto"
+                    marginLeft: "auto",
+                    width: "100%"
                 }}
             >
                 {props.children}

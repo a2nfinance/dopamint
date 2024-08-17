@@ -8,7 +8,7 @@ type CanvasState = {
   content: CanvasInterface.Lifecycle.Content | undefined;
   isReady: boolean;
 };
-
+let client: CanvasClient;
 export function useCanvasClient() {
   const [state, setState] = useState<CanvasState>({
     client: undefined,
@@ -24,8 +24,8 @@ export function useCanvasClient() {
     initializationStartedRef.current = true;
 
     async function initializeCanvas() {
-      const client = new CanvasClient();
-
+      if (!client) 
+        client = new CanvasClient();
       try {
         const response = await client.ready();
         const isValidResponse = await validateHostMessage(response);

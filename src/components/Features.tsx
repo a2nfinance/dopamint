@@ -1,4 +1,4 @@
-import { Avatar, Col, Flex, Image, Row } from "antd";
+import { Col, Flex, Image, Row } from "antd";
 import { useRouter } from "next/router";
 export const Features = () => {
     const router = useRouter();
@@ -7,7 +7,7 @@ export const Features = () => {
         <Flex gap={"middle"} align="center" justify="center">
             <Row gutter={12}>
                 <Col span={8}>
-                    <Flex align="center" vertical={true}>
+                    <Flex align="center" vertical={true} onClick={() => router.push("/nft/templates")}>
                         <Image src="/icon.png" preview={false} width={100} />
                         <p>NFT Templates</p>
                     </Flex>
@@ -38,7 +38,7 @@ export const Features = () => {
                     </Flex>
                 </Col>
                 <Col span={8}>
-                    <Flex align="center" vertical={true}>
+                    <Flex align="center" vertical={true} onClick={() => router.push("/nft/upload")}>
                         <Image src="/icon.png" preview={false} width={100} />
                         <p>AI tools</p>
                     </Flex>
