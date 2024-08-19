@@ -23,7 +23,7 @@ export const Features = () => {
                     </Flex>
                 </Col>
                 <Col span={8}>
-                    <Flex align="center" vertical={true}>
+                    <Flex align="center" vertical={true} onClick={() => router.push("/nft/settings/streak")}>
                         <Image src="/icon.png" preview={false} width={100} />
                         <p>Streak-based NFT settings</p>
                     </Flex>

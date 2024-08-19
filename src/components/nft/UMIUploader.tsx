@@ -1,9 +1,9 @@
 import { useUMI } from "@/hooks/useUMI"
 import { Button, Flex, Form, Input } from "antd"
 export default function UMIUploader() {
-    const { uploadFromLink } = useUMI();
+    // const { uploadFromLink } = useUMI();
     const onFinish = (values: FormData) => {
-        uploadFromLink(values["image_url"])
+        // uploadFromLink(values["image_url"])
     }
     return (
         <Form layout="vertical" onFinish={onFinish}>
