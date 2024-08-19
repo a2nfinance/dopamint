@@ -35,31 +35,33 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     }
 
     return (
-
-        <Provider store={store}>
-            <style
-                id="holderStyle"
-                dangerouslySetInnerHTML={{
-                    __html: `
+        <WalletContextProvider>
+            <Provider store={store}>
+                <style
+                    id="holderStyle"
+                    dangerouslySetInnerHTML={{
+                        __html: `
                     *, *::before, *::after {
                         transition: none!important;
                     }
                     `,
-                }}
-            />
+                    }}
+                />
 
-            <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
-                {
+                <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
 
-                    withTheme(<MobileLayoutProvider>
-                        {/* <WalletContextProvider> */}
+                    {
+
+                        withTheme(<MobileLayoutProvider>
+
                             <Component {...pageProps} />
-                        {/* </WalletContextProvider> */}
-                    </MobileLayoutProvider>)
-                }
 
-            </div>
-        </Provider >
+                        </MobileLayoutProvider>)
+                    }
+
+                </div>
+            </Provider >
+        </WalletContextProvider>
 
 
     )

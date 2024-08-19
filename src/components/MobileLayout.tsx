@@ -1,7 +1,9 @@
 import { SettingOutlined, UserAddOutlined } from '@ant-design/icons';
-import { Button, Divider, Flex, Layout } from 'antd';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { Button, Flex, Layout } from 'antd';
 import { useRouter } from 'next/router';
 import React from "react";
+import { ConnectWalletButton } from './ConnectWalletButton';
 // import { ConnectWallet } from './common/ConnectWallet';
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -31,7 +33,7 @@ export const MobileLayoutProvider = (props: Props) => {
             <Flex gap={"middle"} align='center' justify='center'>
                    
                    <Button size='large' icon={<SettingOutlined />} type='primary' onClick={() => router.push("/")}>Follower settings</Button>
-                   <Button size='large' icon={<UserAddOutlined />} type='primary'>NFT minting</Button>
+                   <ConnectWalletButton />
                </Flex>
 
             </Footer>

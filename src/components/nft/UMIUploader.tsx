@@ -1,6 +1,5 @@
 import { useUMI } from "@/hooks/useUMI"
-import { Button, Form, Input } from "antd"
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { Button, Flex, Form, Input } from "antd"
 export default function UMIUploader() {
     const { uploadFromLink } = useUMI();
     const onFinish = (values: FormData) => {
@@ -9,10 +8,12 @@ export default function UMIUploader() {
     return (
         <Form layout="vertical" onFinish={onFinish}>
             <Form.Item name={"image_url"}>
-                <Input />
+                <Input size="large" />
             </Form.Item>
-            <WalletMultiButton />
-            <Button type="primary" size="large" htmlType="submit">Upload</Button>
+            <Flex justify="center" align="center" gap={"middle"}>
+                <Button type="primary" size="large" htmlType="submit">Upload</Button>
+            </Flex>
+
         </Form>
     )
 }

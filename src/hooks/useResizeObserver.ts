@@ -8,7 +8,7 @@ export function useResizeObserver(canvasClient: CanvasClient | undefined) {
     if (canvasClient) {
       resizeObserverRef.current = new ResizeObserver(() => canvasClient.resize());
       resizeObserverRef.current.observe(document.body);
-
+      document.body.style.height = "auto";
       return () => {
         resizeObserverRef.current?.disconnect();
         canvasClient.destroy();

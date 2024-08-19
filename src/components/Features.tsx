@@ -1,7 +1,11 @@
+import { useCanvasClient } from "@/hooks/useCanvasClient";
+import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { Col, Flex, Image, Row } from "antd";
 import { useRouter } from "next/router";
 export const Features = () => {
     const router = useRouter();
+    const { client } = useCanvasClient();
+    useResizeObserver(client);
     return (
 
         <Flex gap={"middle"} align="center" justify="center">

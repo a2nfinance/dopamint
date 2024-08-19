@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { CanvasClient, CanvasInterface } from "@dscvr-one/canvas-client-sdk";
 import { validateHostMessage } from "@/lib/dscvr";
-
+import {
+  registerCanvasWallet
+} from "@dscvr-one/canvas-wallet-adapter"
 type CanvasState = {
   client: CanvasClient | undefined;
   user: CanvasInterface.Lifecycle.User | undefined;
@@ -24,8 +26,8 @@ export function useCanvasClient() {
     initializationStartedRef.current = true;
 
     async function initializeCanvas() {
-      if (!client) 
-        client = new CanvasClient();
+      if (client) return;
+      client = new CanvasClient();
       try {
         const response = await client.ready();
         const isValidResponse = await validateHostMessage(response);
@@ -36,8 +38,10 @@ export function useCanvasClient() {
             content: response.untrusted.content,
             isReady: true,
           });
+          registerCanvasWallet(client);
         }
       } catch (error) {
+        console.log("ERROR:", error);
         setState((prev) => ({ ...prev, isReady: true }));
       }
     }
