@@ -19,38 +19,46 @@ export function useCanvasClient() {
     isReady: false,
   });
   const initializationStartedRef = useRef(false);
-  async function initializeCanvas() {
-    if (client) return;
-    client = new CanvasClient();
+  async function initializeCanvas(initCanvasWallet: boolean) {
+    if (!client) {
+      client = new CanvasClient();
+    };
+
     try {
       const response = await client.ready();
       const isValidResponse = await validateHostMessage(response);
+
       if (isValidResponse) {
-        setState({
+        let newState = {
           client,
           user: response.untrusted.user,
           content: response.untrusted.content,
           isReady: true,
-        });
-        console.log("Register here")
-        registerCanvasWallet(client);
+        }
+        setState(state);
+        if (initCanvasWallet) {
+          registerCanvasWallet(client);
+        }
+
+        return newState;
       }
     } catch (error) {
       console.log("ERROR:", error);
       setState((prev) => ({ ...prev, isReady: true }));
     }
+    return state;
   }
 
   useEffect(() => {
     if (initializationStartedRef.current) return;
     initializationStartedRef.current = true;
-    initializeCanvas();
-    return () => {
-      // if (state.client) {
-      //   state.client.destroy();
-      // }
-    };
+    initializeCanvas(true);
+    // return () => {
+    //   // if (state.client) {
+    //   //   state.client.destroy();
+    //   // }
+    // };
   }, []);
 
-  return state;
+  return { state, initializeCanvas };
 }

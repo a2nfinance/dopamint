@@ -16,7 +16,7 @@ const txConfig: TransactionBuilderSendAndConfirmOptions = {
 let umi: Umi;
 export const useUMI = () => {
     const wallet = useWallet();
-    const { client } = useCanvasClient();
+    const { initializeCanvas } = useCanvasClient();
 
     const getUmi = () => {
         if (umi) return;
@@ -32,32 +32,33 @@ export const useUMI = () => {
 
     const createAsset = async () => {
         try {
+            await initializeCanvas(false);
             await wallet.connect();
             getUmi();
             // let walletSigner = createSignerFromWalletAdapter(wallet)
             const assetSigner = generateSigner(umi)
-            console.log("assetSigner", assetSigner);
             const transactionBuilder = create(umi, {
                 asset: assetSigner,
                 name: 'Test assets',
                 uri: 'https://arweave.net/5Y3Ux0g1gXyp9M9OPWpAP2qEBeeRg_qGA9k-jcjync0'
             });
             // const signature = await transactionBuilder.send(umi);
-            console.log(client);
-            const signedTxResults = await client!.signAndSendTransaction({
-                chainId: "solana:103",
-                unsignedTx: transactionBuilder.build(umi).serializedMessage.toString(),
-            });
-            if (signedTxResults.untrusted.success) {
-                // signedTx.value = signedTxResults.untrusted.signedTx;
-                console.log("Token created successfully!", signedTxResults.untrusted);
-                // triggerToast("Token created successfully!", "success");
-            } else if (signedTxResults.untrusted.success === false) {
-                console.error("Failed to create token", signedTxResults.untrusted.error);
-                // triggerToast("Failed to create token", "error");
-            }
-            // await createTx.sendAndConfirm(umi, txConfig)
-            // console.log(base58.deserialize(createTx.signature)[0])
+            // let client = state.client;
+
+            // const signedTxResults = await client!.signAndSendTransaction({
+            //     chainId: "solana:103",
+            //     unsignedTx: transactionBuilder.build(umi).serializedMessage.toString(),
+            // });
+            // if (signedTxResults.untrusted.success) {
+            //     // signedTx.value = signedTxResults.untrusted.signedTx;
+            //     console.log("Token created successfully!", signedTxResults.untrusted);
+            //     // triggerToast("Token created successfully!", "success");
+            // } else if (signedTxResults.untrusted.success === false) {
+            //     console.error("Failed to create token", signedTxResults.untrusted.error);
+            //     // triggerToast("Failed to create token", "error");
+            // }
+            let createTx = await transactionBuilder.sendAndConfirm(umi, txConfig)
+            console.log(base58.deserialize(createTx.signature)[0])
         } catch (e) {
             console.log("Error:", e);
         }
