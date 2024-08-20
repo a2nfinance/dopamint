@@ -1,10 +1,8 @@
-import { SettingOutlined, UserAddOutlined } from '@ant-design/icons';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { SettingOutlined } from '@ant-design/icons';
 import { Button, Flex, Layout } from 'antd';
 import { useRouter } from 'next/router';
 import React from "react";
 import { ConnectWalletButton } from './ConnectWalletButton';
-// import { ConnectWallet } from './common/ConnectWallet';
 const { Header, Sider, Content, Footer } = Layout;
 
 interface Props {
@@ -15,6 +13,13 @@ export const MobileLayoutProvider = (props: Props) => {
     const router = useRouter();
     return (
         <Layout>
+            <Header>
+                <Flex gap={"middle"} align='center' justify='space-between' style={{padding: "10px 0 0"}}>
+
+                    <Button size='large' icon={<SettingOutlined />} type='primary' onClick={() => router.push("/")}>Follower NFT settings</Button>
+                    <ConnectWalletButton />
+                </Flex>
+            </Header>
             <Content
                 style={{
                     margin: '20px 16px 20px 16px',
@@ -26,17 +31,17 @@ export const MobileLayoutProvider = (props: Props) => {
                 }}
             >
                 {props.children}
-               
+
             </Content>
-            <Footer style={{ textAlign: 'center' }}>
+            {/* <Footer style={{ textAlign: 'center' }}>
 
-            <Flex gap={"middle"} align='center' justify='center'>
-                   
-                   <Button size='large' icon={<SettingOutlined />} type='primary' onClick={() => router.push("/")}>Follower settings</Button>
-                   <ConnectWalletButton />
-               </Flex>
+                <Flex gap={"middle"} align='center' justify='center'>
 
-            </Footer>
+                    <Button size='large' icon={<SettingOutlined />} type='primary' onClick={() => router.push("/")}>Follower NFT settings</Button>
+                    <ConnectWalletButton />
+                </Flex>
+
+            </Footer> */}
         </Layout>
     )
 
