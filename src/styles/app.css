@@ -1,3 +1,12 @@
-.all-daos-list .ant-collapse-header {
-    background-color: aquamarine;
+.feature-logo-wrapper p {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    margin-bottom: 10px;
 }
+.feature-logo, .nft-template-image {
+    border-radius: 20px;
+    margin-bottom: 5px;
+    max-width: 180px;
+}
+
