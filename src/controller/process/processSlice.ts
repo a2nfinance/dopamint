@@ -7,6 +7,7 @@ export const actionNames = {
     createTemplateAction: "createTemplateAction",
     loadMyTemplatesAction: "loadMyTemplatesAction",
     mintNFTAction: "mintNFTAction",
+    checkingUserFeaturesAction: "checkingUserFeaturesAction"
     
 }
 
@@ -18,7 +19,8 @@ type Processes = {
 const initialState: Processes = {
     mintNFTAction: false,
     createTemplateAction: false,
-    loadMyTemplatesAction: false
+    loadMyTemplatesAction: false,
+    checkingUserFeaturesAction: false
 }
 
 export const processesSlice = createSlice({

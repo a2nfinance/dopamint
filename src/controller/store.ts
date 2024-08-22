@@ -1,6 +1,8 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 
-
+import userReducer from './user/userSlice';
+import pointRuleReducer from './pointRule/pointRuleSlice';
+import streakRuleReducer from './streakRule/streakRuleSlice';
 import processReducer from './process/processSlice';
 import templateReducer from './template/templateSlice';
 export function makeStore() {
@@ -8,6 +10,9 @@ export function makeStore() {
         reducer: {
             process: processReducer,
             template: templateReducer,
+            user: userReducer,
+            pointRule: pointRuleReducer,
+            streakRule: streakRuleReducer
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({

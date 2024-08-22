@@ -7,6 +7,7 @@ export const useDBTemplate = () => {
     const { initializeCanvas } = useCanvasClient();
     const dispatch = useAppDispatch();
     const saveNFTTemplate = async (values: FormData) => {
+    
         let state = await initializeCanvas(false);
         if (!state.user) return;
         if (state.user.id) {

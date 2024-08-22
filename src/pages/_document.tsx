@@ -6,8 +6,8 @@ export default function Document() {
             <Head>
                 {/* <meta name="title" content="DopaMint" /> */}
                 {/* <meta name="description" content="DopaMint"/> */}
-                {/* <link rel="icon" type="image/x-icon" href="/favicon.ico" /> */}
-                <meta name="og:image" content="/icon.png"/>
+                <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+                <meta name="og:image" content="/background.gif"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta property="dscvr:canvas:version" content="vNext" />
                 {/* <title>DopaMint</title> */}

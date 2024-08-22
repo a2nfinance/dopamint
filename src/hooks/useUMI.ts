@@ -8,6 +8,7 @@ import { useWallet } from '@solana/wallet-adapter-react'
 // import { nftStorageUploader } from '@metaplex-foundation/umi-uploader-nft-storage';
 import { base58 } from "@metaplex-foundation/umi/serializers"
 import { useCanvasClient } from './useCanvasClient'
+import { Connection } from '@solana/web3.js'
 
 const txConfig: TransactionBuilderSendAndConfirmOptions = {
     send: { skipPreflight: true },
@@ -30,20 +31,25 @@ export const useUMI = () => {
 
     }
 
-    const createAsset = async () => {
+    const createAsset = async (template: any) => {
         try {
-            await initializeCanvas(false);
+            await initializeCanvas(true);
             await wallet.connect();
             getUmi();
             // let walletSigner = createSignerFromWalletAdapter(wallet)
             const assetSigner = generateSigner(umi)
+            console.log(umi);
             const transactionBuilder = create(umi, {
                 asset: assetSigner,
-                name: 'Test assets',
-                uri: 'https://arweave.net/5Y3Ux0g1gXyp9M9OPWpAP2qEBeeRg_qGA9k-jcjync0'
+                name: template.name,
+                uri: template.metadata_uri
             });
             // const signature = await transactionBuilder.send(umi);
             // let client = state.client;
+            // client?.connectWalletAndSendTransaction(
+            //     "solana:103",
+            //     transactionBuilder.build(umi).serializedMessage.toString()
+            // )
 
             // const signedTxResults = await client!.signAndSendTransaction({
             //     chainId: "solana:103",
@@ -57,8 +63,9 @@ export const useUMI = () => {
             //     console.error("Failed to create token", signedTxResults.untrusted.error);
             //     // triggerToast("Failed to create token", "error");
             // }
-            let createTx = await transactionBuilder.sendAndConfirm(umi, txConfig)
-            console.log(base58.deserialize(createTx.signature)[0])
+            console.log(umi);
+            let createTx = await transactionBuilder.sendAndConfirm(umi, txConfig);
+            console.log(base58.deserialize(createTx.signature)[0]);
         } catch (e) {
             console.log("Error:", e);
         }

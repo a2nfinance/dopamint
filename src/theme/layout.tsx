@@ -4,7 +4,9 @@ const formLayout = {
 };
 
 const formStyle = {
-    // maxWidth: 900,
+    maxWidth: "400px",
+    marginLeft: "auto",
+    marginRight: "auto"
     // marginLeft: 75,
     // paddingRight: 75
 }

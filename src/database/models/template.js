@@ -38,6 +38,10 @@ let template = new Schema({
         type: Object,
         require: false
     },
+    metadata_uri: {
+        type: String,
+        require: false
+    },
     created_at: {
         type: Date,
         required: true,
