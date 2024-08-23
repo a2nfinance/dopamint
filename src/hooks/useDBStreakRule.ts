@@ -1,6 +1,5 @@
 import { useAppDispatch } from "@/controller/hooks";
 import { actionNames, updateActionStatus } from "@/controller/process/processSlice";
-import { setTemplateList } from "@/controller/template/templateSlice";
 import { useCanvasClient } from "./useCanvasClient";
 
 export const useDBStreakRule = () => {

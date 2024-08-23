@@ -1,9 +1,13 @@
-import { SettingOutlined } from '@ant-design/icons';
-import { Button, Flex, Layout } from 'antd';
+import { useAppSelector } from '@/controller/hooks';
+import { AppstoreOutlined } from '@ant-design/icons';
+import { Image, Layout, Menu } from 'antd';
 import { useRouter } from 'next/router';
 import React from "react";
-import { ConnectWalletButton } from './ConnectWalletButton';
-const { Header, Sider, Content, Footer } = Layout;
+import { CiCircleList } from "react-icons/ci";
+import { GoGift } from "react-icons/go";
+import { LuActivity, LuBrain, LuLayoutTemplate } from "react-icons/lu";
+import { RiNftLine } from "react-icons/ri";
+const { Sider, Content} = Layout;
 
 interface Props {
     children: React.ReactNode | React.ReactNode[];
@@ -11,18 +15,72 @@ interface Props {
 
 export const MobileLayoutProvider = (props: Props) => {
     const router = useRouter();
+    const { isContentCreator } = useAppSelector(state => state.user);
     return (
         <Layout>
-            <Header>
-                <Flex gap={"middle"} align='center' justify='space-between' style={{padding: "10px 0 0"}}>
+            {isContentCreator && <Sider width={150} collapsed={true}>
+                <div style={{ height: 50, margin: 16 }}>
+                    {
+                        <Image src={"/icon.png"} alt="DeTrain" preview={false} width={50} height={50} />
+                    }
+                </div>
 
-                    <Button size='large' icon={<SettingOutlined />} type='primary' onClick={() => router.push("/")}>Follower NFT settings</Button>
-                    <ConnectWalletButton />
-                </Flex>
-            </Header>
+                <Menu
+                    style={{ fontWeight: 600 }}
+                    inlineIndent={10}
+                    mode="inline"
+                    defaultSelectedKeys={['1']}
+                    items={[
+                        {
+                            key: '2',
+                            icon: <AppstoreOutlined />,
+                            label: "Home",
+                            onClick: () => router.push("/")
+                        },
+                        {
+                            key: '3',
+                            icon: <LuLayoutTemplate />,
+                            label: "NFT templates",
+                            onClick: () => router.push("/nft/templates")
+                        },
+                        {
+                            key: '4',
+                            icon: <GoGift />,
+                            label: "Points-based rule",
+                            onClick: () => router.push("/nft/settings/dscvr-points")
+                        },
+                        {
+                            key: '5',
+                            icon: <LuActivity />,
+                            label: "Streak-based rule",
+                            onClick: () => router.push("/nft/settings/streak")
+                        },
+                        {
+                            key: '6',
+                            icon: <CiCircleList />,
+                            label: "Whitelisting canvas",
+                            onClick: () => router.push("/nft/settings/whitelisting-canvas")
+                        },
+                        {
+                            key: '7',
+                            icon: <RiNftLine />,
+                            label: "Existing assets-based rule",
+                            onClick: () => router.push("/nft/existing-assets-based")
+                        },
+
+                        {
+                            key: '8',
+                            icon: <LuBrain />,
+                            label: "AI tools",
+                            onClick: () => router.push("/nft/ai-tools")
+                        },
+                    ]}
+                />
+            </Sider>}
+
             <Content
                 style={{
-                    margin: '20px 16px 20px 16px',
+                    margin: '0px 16px 0 0',
                     padding: 16,
                     boxSizing: "border-box",
                     marginRight: "auto",
@@ -33,15 +91,6 @@ export const MobileLayoutProvider = (props: Props) => {
                 {props.children}
 
             </Content>
-            {/* <Footer style={{ textAlign: 'center' }}>
-
-                <Flex gap={"middle"} align='center' justify='center'>
-
-                    <Button size='large' icon={<SettingOutlined />} type='primary' onClick={() => router.push("/")}>Follower NFT settings</Button>
-                    <ConnectWalletButton />
-                </Flex>
-
-            </Footer> */}
         </Layout>
     )
 
