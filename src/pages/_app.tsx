@@ -2,13 +2,13 @@ import { MobileLayoutProvider } from '@/components/MobileLayout';
 import { store } from "@/controller/store";
 import "@/styles/app.css";
 import withTheme from '@/theme';
-import 'antd/dist/reset.css';
 import '@solana/wallet-adapter-react-ui/styles.css';
+import 'antd/dist/reset.css';
 import type { AppProps } from 'next/app';
 // import NProgress from "nprogress";
+import { WalletContextProvider } from '@/contexts/WalletContextProvider';
 import { useEffect, useState } from 'react';
 import { Provider } from "react-redux";
-import { WalletContextProvider } from '@/contexts/WalletContextProvider';
 
 // Router.events.on("routeChangeStart", (url) => {
 //     NProgress.start()

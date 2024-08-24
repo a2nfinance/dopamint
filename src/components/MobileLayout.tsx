@@ -1,8 +1,9 @@
 import { useAppSelector } from '@/controller/hooks';
+import { useCanvasClient } from '@/hooks/useCanvasClient';
 import { AppstoreOutlined } from '@ant-design/icons';
-import { Image, Layout, Menu } from 'antd';
+import { Image, Layout, Menu, theme } from 'antd';
 import { useRouter } from 'next/router';
-import React from "react";
+import React, { useEffect } from "react";
 import { CiCircleList } from "react-icons/ci";
 import { GoGift } from "react-icons/go";
 import { LuActivity, LuBrain, LuLayoutTemplate } from "react-icons/lu";
@@ -16,9 +17,16 @@ interface Props {
 export const MobileLayoutProvider = (props: Props) => {
     const router = useRouter();
     const { isContentCreator } = useAppSelector(state => state.user);
+    const {resizeObserver} = useCanvasClient();
+    useEffect(() => {
+        resizeObserver();
+    }, []);
+    const {
+        token: { colorBgContainer },
+    } = theme.useToken();
     return (
         <Layout>
-            {isContentCreator && <Sider width={150} collapsed={true}>
+            {isContentCreator && <Sider width={150} collapsed={true} style={{ background: colorBgContainer }}>
                 <div style={{ height: 50, margin: 16 }}>
                     {
                         <Image src={"/icon.png"} alt="DeTrain" preview={false} width={50} height={50} />
@@ -26,7 +34,7 @@ export const MobileLayoutProvider = (props: Props) => {
                 </div>
 
                 <Menu
-                    style={{ fontWeight: 600 }}
+                    style={{ fontWeight: 600, border: 0 }}
                     inlineIndent={10}
                     mode="inline"
                     defaultSelectedKeys={['1']}

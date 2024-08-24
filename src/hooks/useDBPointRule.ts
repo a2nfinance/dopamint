@@ -28,7 +28,6 @@ export const useDBPointRule = () => {
         let state = await initializeCanvas(false);
         if (!state.user) return;
         if (state.user.id) {
-            console.log("state.user", state.user);
             dispatch(updateActionStatus({ actionName: actionNames.loadMyTemplatesAction, value: true }))
             let req = await fetch("/api/point-rules/getList", {
                 method: "POST",

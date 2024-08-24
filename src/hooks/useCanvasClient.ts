@@ -4,16 +4,16 @@ import { updateUserState } from "@/controller/user/userSlice";
 import { validateHostMessage } from "@/lib/dscvr";
 import { CanvasClient, CanvasInterface } from "@dscvr-one/canvas-client-sdk";
 import {
-  registerCanvasWallet
+  registerCanvasWallet,
 } from "@dscvr-one/canvas-wallet-adapter";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 type CanvasState = {
   client: CanvasClient | undefined;
   user: CanvasInterface.Lifecycle.User | undefined;
   content: CanvasInterface.Lifecycle.Content | undefined;
   isReady: boolean;
 };
-let client: CanvasClient;
+var client: CanvasClient;
 export function useCanvasClient() {
   const dispatch = useAppDispatch();
   const [state, setState] = useState<CanvasState>({
@@ -51,17 +51,6 @@ export function useCanvasClient() {
     }
     return state;
   }
-
-  // useEffect(() => {
-  //   if (initializationStartedRef.current) return;
-  //   initializationStartedRef.current = true;
-  //   initializeCanvas(true);
-  //   // return () => {
-  //   //   // if (state.client) {
-  //   //   //   state.client.destroy();
-  //   //   // }
-  //   // };
-  // }, []);
   const destroyClient = {
     if(client) {
       client.destroy();
@@ -167,5 +156,16 @@ export function useCanvasClient() {
     dispatch(updateActionStatus({ actionName: actionNames.checkingUserFeaturesAction, value: false }))
   }
 
-  return { state, initializeCanvas, checIsContentCreator, destroyClient };
+  const resizeObserver = async () => {
+    if (!client) {
+      client = new CanvasClient();
+      setState({...state, client: client})
+    };
+
+    const observer = new ResizeObserver(() => client.resize());
+    observer.observe(document.body);
+    document.body.style.height = "auto";
+  }
+
+  return { state, initializeCanvas, checIsContentCreator, destroyClient, resizeObserver };
 }
