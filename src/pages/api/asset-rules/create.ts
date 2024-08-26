@@ -1,5 +1,5 @@
 import connect from '@/database/connect';
-import PointRule from "@/database/models/pointrule";
+import AssetRule from "@/database/models/assetrule";
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -11,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         } = req.body;
         if (owner && name) {
             try {
-                let obj = new PointRule(req.body);
+                let obj = new AssetRule(req.body);
                 let savedObj = await obj.save();
                 return res.status(200).send(savedObj);
             } catch (error) {

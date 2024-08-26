@@ -1,19 +1,17 @@
 import connect from '@/database/connect';
-import PointRule from "@/database/models/pointrule";
 import { NextApiRequest, NextApiResponse } from 'next';
+import AssetRule from "@/database/models/assetrule";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        // need to validate
         const {
-            owner,
-            name,
+            owner
         } = req.body;
-        if (owner && name) {
+        if (owner) {
+        
             try {
-                let obj = new PointRule(req.body);
-                let savedObj = await obj.save();
-                return res.status(200).send(savedObj);
+                let records = await  AssetRule.find({owner: owner}).sort({created_at: -1});
+                return res.status(200).send(records);
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);

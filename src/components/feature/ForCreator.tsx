@@ -26,17 +26,17 @@ export const ForCreator= () => {
                             <p>Streak-based</p>
                         </Flex>
                     </Col>
-                    <Col span={8}>
-                        <Flex align="center" className="feature-logo-wrapper" vertical={true}>
-                            <MotionImage src={"/feature_icon/dscvr_points_nft.jpg"} />
-                            <p>Whitelisting Canvas</p>
-                        </Flex>
-                    </Col>
 
                     <Col span={8}>
                         <Flex align="center" className="feature-logo-wrapper" vertical={true}>
                             <MotionImage src={"/feature_icon/dscvr_points_nft.jpg"} />
                             <p>Existing assets-based</p>
+                        </Flex>
+                    </Col>
+                    <Col span={8}>
+                        <Flex align="center" className="feature-logo-wrapper" vertical={true}>
+                            <MotionImage src={"/feature_icon/dscvr_points_nft.jpg"} />
+                            <p>Plugin Settings</p>
                         </Flex>
                     </Col>
                     <Col span={8}>

@@ -1,19 +1,18 @@
-import connect from '@/database/connect';
-import PointRule from "@/database/models/pointrule";
+import connect from '@/';
 import { NextApiRequest, NextApiResponse } from 'next';
+import NF from "@/database/models/";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         // need to validate
         const {
             owner,
-            name,
+            _id,
         } = req.body;
-        if (owner && name) {
+        if (owner && _id) {
             try {
-                let obj = new PointRule(req.body);
-                let savedObj = await obj.save();
-                return res.status(200).send(savedObj);
+                await Pipeline.findOneAndUpdate({ owner: owner, _id: _id}, req.body);
+                res.json({ success: true });
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);

@@ -37,7 +37,7 @@ export const MobileLayoutProvider = (props: Props) => {
                     style={{ fontWeight: 600, border: 0 }}
                     inlineIndent={10}
                     mode="inline"
-                    defaultSelectedKeys={['1']}
+                    defaultSelectedKeys={['2']}
                     items={[
                         {
                             key: '2',
@@ -65,17 +65,16 @@ export const MobileLayoutProvider = (props: Props) => {
                         },
                         {
                             key: '6',
-                            icon: <CiCircleList />,
-                            label: "Whitelisting canvas",
-                            onClick: () => router.push("/nft/settings/whitelisting-canvas")
-                        },
-                        {
-                            key: '7',
                             icon: <RiNftLine />,
                             label: "Existing assets-based rule",
                             onClick: () => router.push("/nft/existing-assets-based")
                         },
-
+                        {
+                            key: '7',
+                            icon: <CiCircleList />,
+                            label: "Plugin Settings",
+                            onClick: () => router.push("/nft/settings/plugin")
+                        },
                         {
                             key: '8',
                             icon: <LuBrain />,

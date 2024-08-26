@@ -1,19 +1,18 @@
 import connect from '@/database/connect';
-import PointRule from "@/database/models/pointrule";
 import { NextApiRequest, NextApiResponse } from 'next';
+import NFTTemplate from "@/database/models/template";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        // need to validate
         const {
-            owner,
-            name,
+            _id,
+            owner
         } = req.body;
-        if (owner && name) {
+        if (_id && owner) {
+        
             try {
-                let obj = new PointRule(req.body);
-                let savedObj = await obj.save();
-                return res.status(200).send(savedObj);
+                let tpl = await NFTTemplate.findOne({_id: _id, owner: owner});
+                return res.status(200).send(tpl);
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);
