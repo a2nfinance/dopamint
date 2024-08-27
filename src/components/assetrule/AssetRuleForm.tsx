@@ -1,18 +1,16 @@
 import { useAppSelector } from "@/controller/hooks";
-import { useDBPointRule } from "@/hooks/useDBPointRule";
+import { useDBAssetRule } from "@/hooks/useDBAssetRule";
 import { useDBTemplate } from "@/hooks/useDBTemplate";
-import { formStyle } from "@/theme/layout"
-import { Button, Card, Col, DatePicker, Form, Input, Row, Select, Slider } from "antd"
+import { formStyle } from "@/theme/layout";
+import { Button, Card, Col, DatePicker, Form, Input, Row, Select, Slider } from "antd";
 import { useEffect } from "react";
 
-export const RuleForm = () => {
+export const AssetRuleForm = () => {
     const {getNFTTemplates} = useDBTemplate();
-    const {savePointRule} = useDBPointRule();
+    const {saveAssetRule} = useDBAssetRule();
     const {templates} = useAppSelector(state => state.template);
     const onFinish = (values: any) => {
-        console.log(values);
-        values = {...values, min_point: values["range"][0], max_point: values["range"][1]};
-        savePointRule(values);
+        saveAssetRule(values);
     }
 
     useEffect(() => {

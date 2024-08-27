@@ -28,7 +28,7 @@ export const ForCreator= () => {
                     </Col>
 
                     <Col span={8}>
-                        <Flex align="center" className="feature-logo-wrapper" vertical={true}>
+                        <Flex align="center" className="feature-logo-wrapper" vertical={true} onClick={() => router.push("/nft/settings/existing-assets-based")}>
                             <MotionImage src={"/feature_icon/dscvr_points_nft.jpg"} />
                             <p>Existing assets-based</p>
                         </Flex>

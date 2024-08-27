@@ -67,7 +67,7 @@ export const MobileLayoutProvider = (props: Props) => {
                             key: '6',
                             icon: <RiNftLine />,
                             label: "Existing assets-based rule",
-                            onClick: () => router.push("/nft/existing-assets-based")
+                            onClick: () => router.push("/nft/settings/existing-assets-based")
                         },
                         {
                             key: '7',
