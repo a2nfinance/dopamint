@@ -34,7 +34,7 @@ export const ForCreator= () => {
                         </Flex>
                     </Col>
                     <Col span={8}>
-                        <Flex align="center" className="feature-logo-wrapper" vertical={true}>
+                        <Flex align="center" className="feature-logo-wrapper" vertical={true}  onClick={() => router.push("/nft/settings/plugin")}>
                             <MotionImage src={"/feature_icon/dscvr_points_nft.jpg"} />
                             <p>Plugin Settings</p>
                         </Flex>

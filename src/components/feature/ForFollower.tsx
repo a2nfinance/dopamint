@@ -3,6 +3,7 @@ import { useUMI } from "@/hooks/useUMI";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Button, Col, Flex, Row } from "antd";
 import { MotionImage } from "./MotionImage";
+import { useCallback } from "react";
 
 
 export const ForFollower = () => {
@@ -10,12 +11,12 @@ export const ForFollower = () => {
     const { createAsset, selectCanvasWallet } = useUMI();
     const { appliedRules } = useAppSelector(state => state.user);
     // Need to check whether what NFT user can mint.
-    const handleMintNFT = (template: any) => {
-        createAsset(template);
+    const handleMintNFT = (wallet, template: any) => {
+        createAsset(wallet, template);
     }
 
     const handleConnect = () => {
-        selectCanvasWallet()
+        selectCanvasWallet(wallet)
     }
 
     return (
@@ -26,7 +27,7 @@ export const ForFollower = () => {
                         <MotionImage src={t.image} />
                         <p>{t.name}</p>
                         <span>{t.description}</span>
-                        <Button type="primary" size="large" onClick={() => { wallet.connected ? handleMintNFT(t) : handleConnect()}}>{wallet.connected ? "Mint" : "Connect to mint"}</Button>
+                        <Button type="primary" size="large" onClick={() => { wallet.connected ? handleMintNFT(wallet, t) : handleConnect() }}>{wallet.connected ? "Mint" : "Connect to mint"}</Button>
                     </Flex>
                 </Col>))
                 }

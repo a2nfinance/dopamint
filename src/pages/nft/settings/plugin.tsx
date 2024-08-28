@@ -1,8 +1,8 @@
-import { AllRules } from "@/components/dscvrpoints/AllRules";
-import { PointRuleForm } from "@/components/dscvrpoints/PointRuleForm";
+import { AllRules } from "@/components/pluginsetting/AllRules";
+import { SettingForm } from "@/components/pluginsetting/SettingForm";
 import { Tabs, TabsProps } from "antd";
 
-export default function DSCVRPoints() {
+export default function Plugin() {
     const onChange = (key: string) => {
         console.log(key);
     };
@@ -15,11 +15,11 @@ export default function DSCVRPoints() {
         },
         {
             key: '2',
-            label: 'New Rule',
-            children: <PointRuleForm />,
+            label: 'New Settings',
+            children: <SettingForm />,
         }
     ];
     return (
-        <Tabs centered defaultActiveKey="1"  items={items} onChange={onChange} />
+        <Tabs centered defaultActiveKey="1" items={items} onChange={onChange} />
     )
 }

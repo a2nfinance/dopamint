@@ -6,14 +6,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         // need to validate
         const {
-            owner,
-            name,
+            user_id,
+            template_id,
+            metadata_uri
         } = req.body;
-        if (owner && name) {
+        if (user_id && template_id && metadata_uri) {
             try {
-                let obj = new History(req.body);
-                let savedObj = await obj.save();
-                return res.status(200).send(savedObj);
+                await History.findOneAndUpdate(
+                    { user_id: user_id, template_id: template_id, metadata_uri: metadata_uri },
+                    {
+                        user_id: user_id,
+                        template_id: template_id,
+                        metadata_uri: metadata_uri,
+                        $inc: { count: 1 }
+                    },
+                    {
+                        returnNewDocument: true,
+                        upsert: true
+                    }
+                )
+                return res.status(200).send({success: true});
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);

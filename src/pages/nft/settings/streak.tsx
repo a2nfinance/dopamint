@@ -35,6 +35,6 @@ export default function StreakBasedNFTSettings() {
         }
     ];
     return (
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+        <Tabs centered defaultActiveKey="1" items={items} onChange={onChange} />
     )
 }

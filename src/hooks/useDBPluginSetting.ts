@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/controller/hooks";
 import { actionNames, updateActionStatus } from "@/controller/process/processSlice";
 import { useCanvasClient } from "./useCanvasClient";
 
-export const useDBAssetRule = () => {
+export const useDBPluginSetting = () => {
     const { initializeCanvas } = useCanvasClient();
     const dispatch = useAppDispatch();
     const savePluginSetting = async (values: FormData) => {

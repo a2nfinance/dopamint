@@ -20,6 +20,6 @@ export default function ExistingAssetRules() {
         }
     ];
     return (
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+        <Tabs centered defaultActiveKey="1" items={items} onChange={onChange} />
     )
 }

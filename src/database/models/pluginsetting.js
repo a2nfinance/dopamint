@@ -14,6 +14,10 @@ let pluginSetting = new Schema({
         type: String,
         require: true
     },
+    authority_address: {
+        type: String,
+        require: false
+    },
     plugin_type: {
         type: String,
         require: true,
@@ -23,7 +27,7 @@ let pluginSetting = new Schema({
         type: Object,
         require: true
     },
-    apply_to_nft_template_id: {
+    nft_template_id: {
         type: String,
         require: true
     },
