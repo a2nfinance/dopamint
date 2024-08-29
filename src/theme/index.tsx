@@ -8,7 +8,7 @@ const withTheme = (node: JSX.Element) => (
       <ConfigProvider
          theme={{
             token: {
-              colorPrimary: 'rgba(79,70,229,1)'//'#440a96'//'#18c99d',
+              colorPrimary: '#4F46E5'//'#440a96'//'#18c99d',
             },
             components: {
               Menu: {

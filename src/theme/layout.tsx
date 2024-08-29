@@ -12,7 +12,7 @@ const formStyle = {
 }
 
 const headStyle = {
-    backgroundColor: "#18c99d",
+    background: "linear-gradient(to right, #4F46E5 30%, violet)",
     color: "whitesmoke"
 }
 

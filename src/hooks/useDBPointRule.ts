@@ -1,6 +1,7 @@
 import { useAppDispatch } from "@/controller/hooks";
 import { actionNames, updateActionStatus } from "@/controller/process/processSlice";
 import { useCanvasClient } from "./useCanvasClient";
+import { updatePointRuleState } from "@/controller/pointRule/pointRuleSlice";
 
 export const useDBPointRule = () => {
     const { initializeCanvas } = useCanvasClient();
@@ -28,7 +29,7 @@ export const useDBPointRule = () => {
         let state = await initializeCanvas(false);
         if (!state.user) return;
         if (state.user.id) {
-            dispatch(updateActionStatus({ actionName: actionNames.loadMyTemplatesAction, value: true }))
+            dispatch(updateActionStatus({ actionName: actionNames.loadAllRulesAction, value: true }))
             let req = await fetch("/api/point-rules/getList", {
                 method: "POST",
                 headers: {
@@ -37,9 +38,8 @@ export const useDBPointRule = () => {
                 body: JSON.stringify({ owner: state.user.id })
             })
             let res = await req.json();
-            console.log("res", res);
-            // dispatch(setTemplateList(res));
-            // dispatch(updateActionStatus({ actionName: actionNames.loadMyTemplatesAction, value: false }))
+            dispatch(updatePointRuleState({key: "rules", value: res}));
+            dispatch(updateActionStatus({ actionName: actionNames.loadAllRulesAction, value: false }))
         }
     }
 

@@ -8,7 +8,8 @@ export const actionNames = {
     loadMyTemplatesAction: "loadMyTemplatesAction",
     mintNFTAction: "mintNFTAction",
     addPluginDataAction: "addPluginDataAction",
-    checkingUserFeaturesAction: "checkingUserFeaturesAction"
+    checkingUserFeaturesAction: "checkingUserFeaturesAction",
+    loadAllRulesAction: "loadAllRulesAction"
     
 }
 
@@ -22,7 +23,8 @@ const initialState: Processes = {
     addPluginDataAction: false,
     createTemplateAction: false,
     loadMyTemplatesAction: false,
-    checkingUserFeaturesAction: false
+    checkingUserFeaturesAction: false,
+    loadAllRulesAction: false
 }
 
 export const processesSlice = createSlice({
