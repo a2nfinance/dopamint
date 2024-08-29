@@ -7,6 +7,7 @@ export const actionNames = {
     createTemplateAction: "createTemplateAction",
     loadMyTemplatesAction: "loadMyTemplatesAction",
     mintNFTAction: "mintNFTAction",
+    addPluginDataAction: "addPluginDataAction",
     checkingUserFeaturesAction: "checkingUserFeaturesAction"
     
 }
@@ -18,6 +19,7 @@ type Processes = {
 
 const initialState: Processes = {
     mintNFTAction: false,
+    addPluginDataAction: false,
     createTemplateAction: false,
     loadMyTemplatesAction: false,
     checkingUserFeaturesAction: false

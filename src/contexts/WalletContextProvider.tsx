@@ -29,7 +29,7 @@ const ContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     const onError = useCallback(
         (error: WalletError) => {
-            openNotification("", error.message ? `${error.name}: ${error.message}` : error.name, MESSAGE_TYPE.ERROR);
+            openNotification("Action Fail", error.message ? `${error.name}: ${error.message}` : error.name, MESSAGE_TYPE.ERROR);
             console.error(error);
         },
         []

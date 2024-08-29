@@ -16,21 +16,21 @@ export const ForCreator= () => {
                     <Col span={8}>
                         <Flex align="center" className="feature-logo-wrapper" vertical={true} onClick={() => router.push("/nft/settings/dscvr-points")}>
                             <MotionImage src={"/feature_icon/dscvr_points_nft.jpg"} />
-                            <p>DSCVR points-based</p>
+                            <p>Points-based rules</p>
                         </Flex>
                     </Col>
                     <Col span={8}>
                         <Flex align="center" className="feature-logo-wrapper" vertical={true} onClick={() => router.push("/nft/settings/streak")}>
                          
                             <MotionImage src={"/feature_icon/streak_nft.jpg"} />
-                            <p>Streak-based</p>
+                            <p>Streak-based Rules</p>
                         </Flex>
                     </Col>
 
                     <Col span={8}>
                         <Flex align="center" className="feature-logo-wrapper" vertical={true} onClick={() => router.push("/nft/settings/existing-assets-based")}>
                             <MotionImage src={"/feature_icon/dscvr_points_nft.jpg"} />
-                            <p>Existing assets-based</p>
+                            <p>Assets-based rules</p>
                         </Flex>
                     </Col>
                     <Col span={8}>

@@ -70,7 +70,6 @@ export function useCanvasClient() {
 
         let user = response.untrusted.user;
         let content = response.untrusted.content;
-        console.log("content:", content);
         let contentQuery = `{
               content(id: "${content?.id}") {
                 id,
@@ -93,7 +92,6 @@ export function useCanvasClient() {
         });
 
         let contentRes = await getContentRequest.json();
-        console.log("contentRes:", contentRes);
         let creatorId = contentRes.data.content.creator.id;
         if (creatorId === user?.id) {
           dispatch(updateUserState([{ key: "isContentCreator", value: true }]));

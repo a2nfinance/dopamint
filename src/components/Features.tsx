@@ -4,10 +4,11 @@ import { Spin } from "antd";
 import { useEffect } from "react";
 import { ForCreator } from "./feature/ForCreator";
 import { ForFollower } from "./feature/ForFollower";
+import { ForNotFollower } from "./feature/ForNotFollower";
 
 export const Features = () => {
     const { checkingUserFeaturesAction } = useAppSelector(state => state.process);
-    const { isContentCreator } = useAppSelector(state => state.user);
+    const { isContentCreator, user } = useAppSelector(state => state.user);
     const { checIsContentCreator } = useCanvasClient();
     useEffect(() => {
         checIsContentCreator();
@@ -16,7 +17,13 @@ export const Features = () => {
         <Spin spinning={checkingUserFeaturesAction}>
 
             {
-                isContentCreator ? <ForCreator /> : <ForFollower />
+                isContentCreator && <ForCreator />
+            }
+            {
+                !isContentCreator && user.isFollowing && <ForFollower />
+            }
+            {
+                !isContentCreator && !user.isFollowing && <ForNotFollower />
             }
 
         </Spin>

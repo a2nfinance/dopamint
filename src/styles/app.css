@@ -1,4 +1,4 @@
-.feature-logo-wrapper p {
+.feature-logo-wrapper p,.nft-image-wrapper p, .my-nft-template-wrapper p {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 0.9em;
@@ -13,4 +13,17 @@
 .navigation-icons .anticon {
     font-size: 18px;
 
+}
+
+.nft-image-wrapper .nft-image-box {
+    position: relative;
+
+}
+
+.nft-image-wrapper .nft-image-box .mint-btn {
+    position: absolute;
+    bottom: 4px;
+    background-color: rgba(245, 245, 245, 0.3);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }

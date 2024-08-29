@@ -9,6 +9,8 @@ import type { WalletName } from '@solana/wallet-adapter-base'
 import { useCallback } from 'react'
 import { useCanvasClient } from './useCanvasClient'
 import { useDBPluginSetting } from './useDBPluginSetting'
+import { useAppDispatch } from '@/controller/hooks'
+import { actionNames, updateActionStatus } from '@/controller/process/processSlice'
 
 
 
@@ -20,7 +22,7 @@ let umi: Umi;
 export const useUMI = () => {
     const { initializeCanvas, state } = useCanvasClient();
     const { getPluginsByTemplateId } = useDBPluginSetting();
-
+    const dispatch = useAppDispatch();
 
     const getUmi = async (wallet) => {
         if (umi) return;
@@ -37,6 +39,7 @@ export const useUMI = () => {
 
     const createAsset = useCallback(async (wallet: WalletContextState, template: any) => {
         try {
+            dispatch(updateActionStatus({ actionName: actionNames.mintNFTAction, value: true }))
             await getUmi(wallet);
             // Check NFT plugin here
             let plugins: any[] = await getPluginsByTemplateId(template._id);
@@ -79,6 +82,7 @@ export const useUMI = () => {
             let signature = base58.deserialize(createTx.signature)[0];
             if (signature) {
                 if (appliedPlugin) {
+                    dispatch(updateActionStatus({ actionName: actionNames.addPluginDataAction, value: true }))
                     let writeDataTx = await writeData(umi, {
                         key: {
                             type: appliedPlugin.plugin_type,
@@ -89,6 +93,7 @@ export const useUMI = () => {
                     }).sendAndConfirm(umi)
                     let signature1 = base58.deserialize(writeDataTx.signature)[0];
                     console.log(signature1);
+                    dispatch(updateActionStatus({ actionName: actionNames.addPluginDataAction, value: false }))
                 }
 
                 // Update history
@@ -115,7 +120,7 @@ export const useUMI = () => {
 
             console.log("Error:", e);
         }
-
+        dispatch(updateActionStatus({ actionName: actionNames.mintNFTAction, value: false }))
     }, [state.user])
 
     const selectCanvasWallet = async (wallet) => {

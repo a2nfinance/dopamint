@@ -11,7 +11,7 @@ export default function Templates() {
     const items: TabsProps['items'] = [
         {
             key: '1',
-            label: 'My NFT templates',
+            label: 'My NFT Templates',
             children: <MyTemplates />,
         },
         {
@@ -21,6 +21,6 @@ export default function Templates() {
         }
     ];
     return (
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+        <Tabs centered defaultActiveKey="1" items={items} onChange={onChange} />
     )
 }

@@ -1,5 +1,6 @@
 
 import { notification } from 'antd';
+import { ArgsProps } from 'antd/es/notification';
 
 
 export const MESSAGE_TYPE = {
@@ -19,9 +20,12 @@ export const MESSAGE_TYPE = {
  * @param fn 
  */
 export const openNotification = (title: string, description: string, messageType: string, fn?: () => void) => {
-    let config = {
+    let config: ArgsProps = {
         message: title,
         description: description,
+        pauseOnHover: true,
+        showProgress: true,
+        placement: "bottomRight"
     }
 
     switch (messageType) {
