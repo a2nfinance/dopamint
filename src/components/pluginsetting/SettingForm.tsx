@@ -33,6 +33,9 @@ export const SettingForm = () => {
                         value: t._id
                     }))} />
                 </Form.Item>
+                <Form.Item label={"Priority"} name={"priority"}>
+                    <Input size="large" type="number" />
+                </Form.Item>
                 <Form.List name="custom_data">
                     {(fields, { add, remove }) => (
                         <Card title={"Custom data"}>

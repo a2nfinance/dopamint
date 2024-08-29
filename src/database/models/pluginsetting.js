@@ -31,6 +31,11 @@ let pluginSetting = new Schema({
         type: String,
         require: true
     },
+    priority: {
+        type: Number,
+        require: true,
+        default: 0
+    },
     created_at: {
         type: Date,
         required: true,

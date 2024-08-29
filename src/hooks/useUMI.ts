@@ -1,13 +1,14 @@
-import { create, ExternalPluginAdapterSchema, mplCore, PluginAuthority, writeData } from '@metaplex-foundation/mpl-core'
+import { create, ExternalPluginAdapterSchema, mplCore, writeData } from '@metaplex-foundation/mpl-core'
+import { generateSigner, TransactionBuilderSendAndConfirmOptions, Umi } from "@metaplex-foundation/umi"
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults'
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters'
-import { generateSigner, TransactionBuilderSendAndConfirmOptions, Umi } from "@metaplex-foundation/umi"
 import { WalletContextState } from '@solana/wallet-adapter-react'
 
 import { base58 } from "@metaplex-foundation/umi/serializers"
 import type { WalletName } from '@solana/wallet-adapter-base'
 import { useCallback } from 'react'
 import { useCanvasClient } from './useCanvasClient'
+import { useDBPluginSetting } from './useDBPluginSetting'
 
 
 
@@ -18,11 +19,11 @@ const txConfig: TransactionBuilderSendAndConfirmOptions = {
 let umi: Umi;
 export const useUMI = () => {
     const { initializeCanvas, state } = useCanvasClient();
+    const { getPluginsByTemplateId } = useDBPluginSetting();
 
 
     const getUmi = async (wallet) => {
         if (umi) return;
-        console.log(wallet, state);
         await wallet.connect();
         //Create Umi instance
         umi = createUmi(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
@@ -38,45 +39,58 @@ export const useUMI = () => {
         try {
             await getUmi(wallet);
             // Check NFT plugin here
-            const dataAuthority: PluginAuthority = {
-                type: 'Address',
-                // @ts-ignore
-                address: wallet.publicKey
-            }
-            const json = {
-                timeStamp: Date.now(),
-                message: 'Hello, World!',
+            let plugins: any[] = await getPluginsByTemplateId(template._id);
+            let appliedPlugin;
+            let dataAuthority;
+            let pluginData;
+            if (plugins.length) {
+                appliedPlugin = plugins[0];
+                dataAuthority = {
+                    type: 'Address',
+                    // @ts-ignore
+                    address: wallet.publicKey
+                }
+
+                pluginData = new TextEncoder().encode(JSON.stringify(appliedPlugin.data));
+
             }
 
-            const data = new TextEncoder().encode(JSON.stringify(json))
+
             const assetSigner = generateSigner(umi);
-            const transactionBuilder = create(umi, {
+            let transactionParams: any = {
                 asset: assetSigner,
                 name: template.name,
                 uri: template.metadata_uri,
-                plugins: [
-                    {
-                        type: 'AppData',
+            }
+            if (appliedPlugin) {
+                transactionParams = {
+                    ...transactionParams, plugins: [{
+                        type: appliedPlugin.plugin_type,
                         dataAuthority: dataAuthority,
                         schema: ExternalPluginAdapterSchema.Json,
-                    },
-                ],
-            });
+
+                    }]
+                }
+            }
+            const transactionBuilder = create(umi, transactionParams);
 
             let createTx = await transactionBuilder.sendAndConfirm(umi, txConfig);
 
             let signature = base58.deserialize(createTx.signature)[0];
             if (signature) {
-                let writeDataTx = await writeData(umi, {
-                    key: {
-                        type: 'AppData',
-                        dataAuthority,
-                    },
-                    data: data,
-                    asset: assetSigner.publicKey,
-                }).sendAndConfirm(umi)
-                let signature1 = base58.deserialize(writeDataTx.signature)[0];
-                console.log(signature1);
+                if (appliedPlugin) {
+                    let writeDataTx = await writeData(umi, {
+                        key: {
+                            type: appliedPlugin.plugin_type,
+                            dataAuthority,
+                        },
+                        data: pluginData,
+                        asset: assetSigner.publicKey,
+                    }).sendAndConfirm(umi)
+                    let signature1 = base58.deserialize(writeDataTx.signature)[0];
+                    console.log(signature1);
+                }
+
                 // Update history
                 if (state.user?.id) {
                     let req = await fetch("/api/history/create", {

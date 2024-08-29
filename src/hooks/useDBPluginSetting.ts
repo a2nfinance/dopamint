@@ -1,10 +1,7 @@
-import { useAppDispatch } from "@/controller/hooks";
-import { actionNames, updateActionStatus } from "@/controller/process/processSlice";
 import { useCanvasClient } from "./useCanvasClient";
 
 export const useDBPluginSetting = () => {
     const { initializeCanvas } = useCanvasClient();
-    const dispatch = useAppDispatch();
     const savePluginSetting = async (values: FormData) => {
         let state = await initializeCanvas(false);
         if (!state.user) return;
@@ -24,25 +21,24 @@ export const useDBPluginSetting = () => {
 
         }
     }
-    const getAllSettings = async () => {
-        let state = await initializeCanvas(false);
-        if (!state.user) return;
-        if (state.user.id) {
-            console.log("state.user", state.user);
-            dispatch(updateActionStatus({ actionName: actionNames.loadMyTemplatesAction, value: true }))
-            let req = await fetch("/api/plugin-settings/getList", {
+    const getPluginsByTemplateId = async (_id: string) => {
+
+        if (_id) {
+            // dispatch(updateActionStatus({ actionName: actionNames.loadMyTemplatesAction, value: true }))
+            let req = await fetch("/api/plugin-settings/getAppliedPluginByTemplateId", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ owner: state.user.id })
+                body: JSON.stringify({ _id: _id })
             })
             let res = await req.json();
             console.log("res", res);
+            return res;
             // dispatch(setTemplateList(res));
             // dispatch(updateActionStatus({ actionName: actionNames.loadMyTemplatesAction, value: false }))
         }
     }
 
-    return { savePluginSetting, getAllSettings }
+    return { savePluginSetting, getPluginsByTemplateId }
 }

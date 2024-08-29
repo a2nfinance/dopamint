@@ -1,6 +1,6 @@
 import connect from '@/database/connect';
 import { NextApiRequest, NextApiResponse } from 'next';
-import NFTTemplate from "@/database/models/template";
+import PluginSetting from "@/database/models/pluginsetting";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
@@ -10,8 +10,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         if (_id) {
         
             try {
-                let tpl = await NFTTemplate.findById(_id);
-                return res.status(200).send(tpl);
+                let obj = await PluginSetting.find({nft_template_id: _id}).sort({priority: 1});
+                return res.status(200).send(obj);
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);
