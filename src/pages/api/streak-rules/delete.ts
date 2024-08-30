@@ -1,17 +1,18 @@
 import connect from '@/database/connect';
-import StreakRule from "@/database/models/streakrule";
 import { NextApiRequest, NextApiResponse } from 'next';
+import StreakRule from "@/database/models/streakrule";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
+        // need to validate
         const {
-            owner
+            owner,
+            _id,
         } = req.body;
-        if (owner) {
-
+        if (owner && _id) {
             try {
-                let objs = await StreakRule.find({ owner: owner }).sort({ created_at: -1 });
-                return res.status(200).send(objs);
+                await StreakRule.findOneAndDelete({ owner: owner, _id: _id });
+                return res.status(200).send({ success: true });
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);

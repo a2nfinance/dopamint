@@ -36,7 +36,7 @@ export const useDBPointRule = () => {
         if (!state.user) return;
         if (state.user.id) {
             dispatch(updateActionStatus({ actionName: actionNames.loadAllRulesAction, value: true }))
-            let req = await fetch("/api/point-rules/getList", {
+            let req = await fetch("/api/streak-rules/getList", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export const useDBPointRule = () => {
             if (!state.user) return;
             if (state.user.id) {
                 dispatch(updateActionStatus({ actionName: actionNames.deleteRuleAction, value: true }))
-                await fetch("/api/point-rules/delete", {
+                await fetch("/api/streak-rules/delete", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
