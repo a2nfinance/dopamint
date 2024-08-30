@@ -62,6 +62,7 @@ export function useCanvasClient() {
     };
 
     try {
+      dispatch(updateActionStatus({ actionName: actionNames.checkingUserFeaturesAction, value: true }))
       const response = await client.ready();
       const isValidResponse = await validateHostMessage(response);
 

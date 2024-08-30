@@ -1,12 +1,13 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 
-import userReducer from './user/userSlice';
-import pointRuleReducer from './pointRule/pointRuleSlice';
-import streakRuleReducer from './streakRule/streakRuleSlice';
-import processReducer from './process/processSlice';
-import templateReducer from './template/templateSlice';
 import assetReducer from './assetrule/assetRuleSlice';
+import imageReducer from './image/imageSlice';
 import pluginReducer from './plugin/pluginSlice';
+import pointRuleReducer from './pointRule/pointRuleSlice';
+import processReducer from './process/processSlice';
+import streakRuleReducer from './streakRule/streakRuleSlice';
+import templateReducer from './template/templateSlice';
+import userReducer from './user/userSlice';
 export function makeStore() {
     return configureStore({
         reducer: {
@@ -16,7 +17,8 @@ export function makeStore() {
             pointRule: pointRuleReducer,
             streakRule: streakRuleReducer,
             asset: assetReducer,
-            plugin: pluginReducer
+            plugin: pluginReducer,
+            image: imageReducer
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({

@@ -25,7 +25,7 @@ export const MobileLayoutProvider = (props: Props) => {
         token: { colorBgContainer },
     } = theme.useToken();
     return (
-        <Layout style={{minHeight: "450px", height: "auto"}}>
+        <Layout style={{minHeight: "403px", height: "auto"}}>
             {isContentCreator && <Sider width={150} collapsed={true} style={{ background: colorBgContainer }}>
                 <div style={{ height: 50, margin: 16 }}>
                     {
@@ -37,10 +37,10 @@ export const MobileLayoutProvider = (props: Props) => {
                     style={{ fontWeight: 600, border: 0 }}
                     inlineIndent={10}
                     mode="inline"
-                    defaultSelectedKeys={['2']}
+                    defaultSelectedKeys={['1']}
                     items={[
                         {
-                            key: '2',
+                            key: '1',
                             icon: <AppstoreOutlined />,
                             label: "Home",
                             onClick: () => router.push("/")
@@ -79,7 +79,7 @@ export const MobileLayoutProvider = (props: Props) => {
                             key: '8',
                             icon: <LuBrain />,
                             label: "AI tools",
-                            onClick: () => router.push("/nft/ai-tools")
+                            onClick: () => router.push("/ai/generate-image")
                         },
                     ]}
                 />

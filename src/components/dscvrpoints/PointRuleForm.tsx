@@ -1,8 +1,8 @@
 import { useAppSelector } from "@/controller/hooks";
 import { useDBPointRule } from "@/hooks/useDBPointRule";
 import { useDBTemplate } from "@/hooks/useDBTemplate";
-import { formStyle } from "@/theme/layout"
-import { Button, Card, Col, DatePicker, Form, Input, Row, Select, Slider } from "antd"
+import { formStyle } from "@/theme/layout";
+import { Button, Card, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import { useEffect } from "react";
 
 export const PointRuleForm = () => {
@@ -11,8 +11,6 @@ export const PointRuleForm = () => {
     const { templates } = useAppSelector(state => state.template);
     const { newRuleAction } = useAppSelector(state => state.process);
     const onFinish = (values: any) => {
-        console.log(values);
-        values = { ...values, min_point: values["range"][0], max_point: values["range"][1] };
         savePointRule(values);
     }
 
@@ -29,9 +27,20 @@ export const PointRuleForm = () => {
                 <Form.Item label={"Description"} name={"description"}>
                     <Input size="large" />
                 </Form.Item>
-                <Form.Item label={"Point range"} name={"range"}>
-                    <Slider min={1} max={100000} step={10} range />
-                </Form.Item>
+                <Row gutter={12}>
+                    <Col span={12}>
+                        <Form.Item label={"Minimum DSCVR point"} name={"min_point"}>
+                            <Input size="large" type="number" />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item label={"Maximum DSCVR point"} name={"max_point"}>
+                            <Input size="large" type="number" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+
                 <Row gutter={12}>
                     <Col span={12}>
                         <Form.Item label={"NFT template"} name={"nft_template_id"}>

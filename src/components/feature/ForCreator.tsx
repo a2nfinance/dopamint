@@ -40,7 +40,7 @@ export const ForCreator= () => {
                         </Flex>
                     </Col>
                     <Col span={8}>
-                        <Flex align="center" className="feature-logo-wrapper" vertical={true} onClick={() => router.push("/nft/upload")}>
+                        <Flex align="center" className="feature-logo-wrapper" vertical={true} onClick={() => router.push("/ai/generate-image")}>
                             <MotionImage src={"/feature_icon/AI_tools_2.jpg"} />
                             <p>AI tools</p>
                         </Flex>

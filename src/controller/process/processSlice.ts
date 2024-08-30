@@ -11,7 +11,9 @@ export const actionNames = {
     checkingUserFeaturesAction: "checkingUserFeaturesAction",
     newRuleAction: "newRuleAction",
     loadAllRulesAction: "loadAllRulesAction",
-    deleteRuleAction: "deleteRuleAction"
+    deleteRuleAction: "deleteRuleAction",
+    generateImageAction: "generateImageAction",
+    loadGeneratedImagesAction: "loadGeneratedImagesAction"
     
 }
 
@@ -28,7 +30,9 @@ const initialState: Processes = {
     checkingUserFeaturesAction: true,
     newRuleAction: false,
     loadAllRulesAction: false,
-    deleteRuleAction: false
+    deleteRuleAction: false,
+    generateImageAction: false,
+    loadGeneratedImagesAction: false
 }
 
 export const processesSlice = createSlice({
