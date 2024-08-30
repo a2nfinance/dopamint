@@ -10,12 +10,12 @@ export default function Plugin() {
     const items: TabsProps['items'] = [
         {
             key: '1',
-            label: 'Rules',
+            label: 'Settings',
             children: <AllRules />,
         },
         {
             key: '2',
-            label: 'New Settings',
+            label: 'New Setting',
             children: <SettingForm />,
         }
     ];
