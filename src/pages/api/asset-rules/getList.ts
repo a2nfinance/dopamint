@@ -10,8 +10,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         if (owner) {
         
             try {
-                let records = await  AssetRule.find({owner: owner}).sort({created_at: -1});
-                return res.status(200).send(records);
+                let objs = await  AssetRule.find({owner: owner}).sort({created_at: -1});
+                return res.status(200).send(objs);
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);

@@ -5,6 +5,7 @@ import pointRuleReducer from './pointRule/pointRuleSlice';
 import streakRuleReducer from './streakRule/streakRuleSlice';
 import processReducer from './process/processSlice';
 import templateReducer from './template/templateSlice';
+import assetReducer from './assetrule/assetRuleSlice';
 export function makeStore() {
     return configureStore({
         reducer: {
@@ -12,7 +13,8 @@ export function makeStore() {
             template: templateReducer,
             user: userReducer,
             pointRule: pointRuleReducer,
-            streakRule: streakRuleReducer
+            streakRule: streakRuleReducer,
+            asset: assetReducer
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({
