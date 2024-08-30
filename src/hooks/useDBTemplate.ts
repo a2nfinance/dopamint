@@ -1,13 +1,13 @@
 import { useAppDispatch } from "@/controller/hooks";
 import { actionNames, updateActionStatus } from "@/controller/process/processSlice";
-import { setTemplateList } from "@/controller/template/templateSlice";
+import { setTemplate, setTemplateList } from "@/controller/template/templateSlice";
 import { useCanvasClient } from "./useCanvasClient";
 
 export const useDBTemplate = () => {
     const { initializeCanvas } = useCanvasClient();
     const dispatch = useAppDispatch();
     const saveNFTTemplate = async (values: FormData) => {
-    
+
         let state = await initializeCanvas(false);
         if (!state.user) return;
         if (state.user.id) {
@@ -47,5 +47,19 @@ export const useDBTemplate = () => {
         }
     }
 
-    return { saveNFTTemplate, getNFTTemplates }
+    const getNFTTemplateById = async (_id: string) => {
+
+        let req = await fetch("/api/nft-templates/getById", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ _id: _id })
+        })
+        let res = await req.json();
+        dispatch(setTemplate(res));
+
+    }
+
+    return { saveNFTTemplate, getNFTTemplates, getNFTTemplateById }
 }

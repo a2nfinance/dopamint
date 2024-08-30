@@ -1,6 +1,6 @@
 import connect from '@/database/connect';
 import { NextApiRequest, NextApiResponse } from 'next';
-import NFTTemplate from "@/database/models/template";
+import PointRule from "@/database/models/pointrule";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
@@ -11,8 +11,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         } = req.body;
         if (owner && _id) {
             try {
-                await NFTTemplate.findByIdAndDelete(_id);
-                return res.status(200).send("deleted");
+                await PointRule.findOneAndDelete({owner: owner, _id: _id});
+                return res.status(200).send({success: true});
             } catch (error) {
                 console.log(error)
                 return res.status(500).send(error.message);
