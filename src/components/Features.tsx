@@ -20,12 +20,8 @@ export const Features = () => {
                 isContentCreator && <ForCreator />
             }
             {
-                !isContentCreator && user.isFollowing && <ForFollower />
+                !isContentCreator && (user.isFollowing ? <ForFollower /> : <ForNotFollower />)
             }
-            {
-                !isContentCreator && !user.isFollowing && <ForNotFollower />
-            }
-
         </Spin>
 
     )

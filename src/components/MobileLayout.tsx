@@ -25,7 +25,7 @@ export const MobileLayoutProvider = (props: Props) => {
         token: { colorBgContainer },
     } = theme.useToken();
     return (
-        <Layout style={{minHeight: "430px"}}>
+        <Layout style={{minHeight: "450px", height: "auto"}}>
             {isContentCreator && <Sider width={150} collapsed={true} style={{ background: colorBgContainer }}>
                 <div style={{ height: 50, margin: 16 }}>
                     {

@@ -57,7 +57,6 @@ export function useCanvasClient() {
     }
   }
   const checIsContentCreator = async () => {
-    dispatch(updateActionStatus({ actionName: actionNames.checkingUserFeaturesAction, value: true }))
     if (!client) {
       client = new CanvasClient();
     };
@@ -140,8 +139,6 @@ export function useCanvasClient() {
           });
 
           let appliedRules = await getAppliedRulesReq.json();
-          console.log(appliedRules);
-
           dispatch(updateUserState([{ key: "user", value: userData }, {key: "appliedRules", value: appliedRules}]));
 
         }
