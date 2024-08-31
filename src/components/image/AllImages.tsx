@@ -13,7 +13,7 @@ export const AllImages = () => {
     return (
         <Row gutter={12}>
             {
-                (images.length > 0) && images.map((i, index) => <Col span={12}><GeneratedImages  image={i.image} /></Col>)
+                (images.length > 0) && images.map((i, index) => <Col key={`images-${index}`} span={12}><GeneratedImages  image={i.image} /></Col>)
             }
         </Row>
     )
