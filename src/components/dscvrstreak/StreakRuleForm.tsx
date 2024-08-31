@@ -3,7 +3,7 @@ import { useAppSelector } from "@/controller/hooks";
 import { useDBStreakRule } from "@/hooks/useDBStreakRule";
 import { useDBTemplate } from "@/hooks/useDBTemplate";
 import { formStyle } from "@/theme/layout";
-import { Button, Card, Col, DatePicker, Form, Input, Row, Select } from "antd";
+import { Alert, Button, Card, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import { useEffect } from "react";
 
 export const StreakRuleForm = () => {
@@ -19,6 +19,8 @@ export const StreakRuleForm = () => {
     return (
         <Form layout="vertical" initialValues={{ streak_range: [1, 10], min_multiplier: [0, 10] }} onFinish={onFinish} style={formStyle}>
             <Card>
+                <Alert type="info" message={"Followers can mint new NFTs based on their streak and multiplier"} showIcon />
+                <br />
                 <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>
@@ -45,7 +47,7 @@ export const StreakRuleForm = () => {
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item label={"Maximum mutiplier"} name={"max_mutiplier"} rules={[{ required: true, message: "Missing maximum number of multiplier" }]}> 
+                        <Form.Item label={"Maximum mutiplier"} name={"max_mutiplier"} rules={[{ required: true, message: "Missing maximum number of multiplier" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>

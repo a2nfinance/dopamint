@@ -3,7 +3,7 @@ import { useDBPluginSetting } from "@/hooks/useDBPluginSetting";
 import { useDBTemplate } from "@/hooks/useDBTemplate";
 import { formStyle } from "@/theme/layout";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Divider, Form, Input, Row, Select } from "antd";
+import { Alert, Button, Card, Col, Divider, Form, Input, Row, Select } from "antd";
 import { useEffect } from "react";
 
 export const SettingForm = () => {
@@ -21,6 +21,8 @@ export const SettingForm = () => {
 
         <Form layout="vertical" initialValues={{ range: [20, 50] }} style={formStyle} onFinish={onFinish}>
             <Card>
+            <Alert type="info" message={"Followers can mint new NFTs using the AppData plugin settings."} showIcon />
+            <br />
                 <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>

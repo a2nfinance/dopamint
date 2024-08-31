@@ -2,7 +2,7 @@ import { useAppSelector } from "@/controller/hooks";
 import { useDBAssetRule } from "@/hooks/useDBAssetRule";
 import { useDBTemplate } from "@/hooks/useDBTemplate";
 import { formStyle } from "@/theme/layout";
-import { Button, Card, Form, Input, Select } from "antd";
+import { Alert, Button, Card, Form, Input, Select } from "antd";
 import { useEffect } from "react";
 
 export const AssetRuleForm = () => {
@@ -20,6 +20,8 @@ export const AssetRuleForm = () => {
 
         <Form layout="vertical" initialValues={{ range: [20, 50] }} style={formStyle} onFinish={onFinish}>
             <Card>
+                <Alert type="info" message={"Followers can mint new NFTs based on their existing NFTs with specific metadata_uri."} showIcon />
+                <br />
                 <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>

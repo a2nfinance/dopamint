@@ -1,6 +1,7 @@
+import { useAppSelector } from "@/controller/hooks";
 import { useDBTemplate } from "@/hooks/useDBTemplate";
 import { formStyle } from "@/theme/layout";
-import { Button, Card, Col, Form, Input, Row, Select } from "antd"
+import { Alert, Button, Card, Col, Form, Input, Row, Select } from "antd"
 const fileTypeOptions: { label: string, value: string }[] = [
     { label: "PNG", value: "png" },
     { label: "JPEG", value: "jpeg" },
@@ -9,6 +10,7 @@ const fileTypeOptions: { label: string, value: string }[] = [
 ];
 export const TemplateForm = () => {
     const { saveNFTTemplate } = useDBTemplate();
+    const { createTemplateAction } = useAppSelector(state => state.process);
     const onFinish = (values: FormData) => {
         saveNFTTemplate(values);
     }
@@ -16,21 +18,23 @@ export const TemplateForm = () => {
 
         <Form layout="vertical" onFinish={onFinish} style={formStyle}>
             <Card>
-                <Form.Item label="Name" name={"name"} rules={[{required: true, message: "Missing name"}]}>
+                <Alert type="info" message={"NFT templates are uploaded to decentralized storage and will be used if followers mint new NFTs."} showIcon />
+                <br />
+                <Form.Item label="Name" name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input placeholder="Name" size="large" />
                 </Form.Item>
-                <Form.Item label="Description" name={"description"} rules={[{required: true, message: "Missing description"}]}>
+                <Form.Item label="Description" name={"description"} rules={[{ required: true, message: "Missing description" }]}>
                     <Input placeholder="Description" size="large" />
                 </Form.Item>
                 <Row gutter={12}>
                     <Col span={12}>
-                        <Form.Item label="Image URL" name={"image"} rules={[{required: true, message: "Missing image"}]}>
+                        <Form.Item label="Image URL" name={"image"} rules={[{ required: true, message: "Missing image" }]}>
                             <Input placeholder="Image" size="large" />
                         </Form.Item>
                     </Col>
 
                     <Col span={12}>
-                        <Form.Item label="Extension" name={"image_file_type"} rules={[{required: true, message: "Missing extension"}]}>
+                        <Form.Item label="Extension" name={"image_file_type"} rules={[{ required: true, message: "Missing extension" }]}>
                             <Select size="large" options={fileTypeOptions} />
                         </Form.Item>
                     </Col>
@@ -47,11 +51,7 @@ export const TemplateForm = () => {
                         </Form.Item>
                     </Col>
                 </Row>
-
-
-
-
-                <Button htmlType="submit" size="large" type="primary" block>Upload to the decentralized storage</Button>
+                <Button htmlType="submit" size="large" type="primary" loading={createTemplateAction} block>Upload to decentralized storage</Button>
             </Card>
         </Form>
     )

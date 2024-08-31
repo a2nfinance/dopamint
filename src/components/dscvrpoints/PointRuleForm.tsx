@@ -2,7 +2,7 @@ import { useAppSelector } from "@/controller/hooks";
 import { useDBPointRule } from "@/hooks/useDBPointRule";
 import { useDBTemplate } from "@/hooks/useDBTemplate";
 import { formStyle } from "@/theme/layout";
-import { Button, Card, Col, DatePicker, Form, Input, Row, Select } from "antd";
+import { Alert, Button, Card, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import { useEffect } from "react";
 
 export const PointRuleForm = () => {
@@ -21,6 +21,8 @@ export const PointRuleForm = () => {
 
         <Form layout="vertical" initialValues={{ range: [20, 50] }} style={formStyle} onFinish={onFinish}>
             <Card>
+                <Alert type="info" message={"Followers can mint new NFTs based on their DSCVR points"} showIcon />
+                <br />
                 <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>
