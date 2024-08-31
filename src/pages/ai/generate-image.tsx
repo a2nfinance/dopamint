@@ -10,7 +10,7 @@ export default function GenerateImage() {
     const items: TabsProps['items'] = [
         {
             key: '1',
-            label: 'Generated Image',
+            label: 'Generated Images',
             children: <AllImages />,
         },
         {
