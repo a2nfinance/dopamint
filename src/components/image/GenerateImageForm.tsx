@@ -54,7 +54,7 @@ export const GenerateImageForm = () => {
                 </Form>
             </Col>
             <Col span={12}>
-                {image && <GeneratedImages image={image} />}
+                {image ? <GeneratedImages image={image} /> : <Card loading={generateImageAction}></Card>}
             </Col>
 
         </Row>

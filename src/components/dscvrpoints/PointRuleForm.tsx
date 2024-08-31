@@ -21,20 +21,20 @@ export const PointRuleForm = () => {
 
         <Form layout="vertical" initialValues={{ range: [20, 50] }} style={formStyle} onFinish={onFinish}>
             <Card>
-                <Form.Item label={"Name"} name={"name"}>
+                <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>
-                <Form.Item label={"Description"} name={"description"}>
+                <Form.Item label={"Description"} name={"description"} rules={[{ required: true, message: "Missing description" }]}>
                     <Input size="large" />
                 </Form.Item>
                 <Row gutter={12}>
                     <Col span={12}>
-                        <Form.Item label={"Minimum DSCVR point"} name={"min_point"}>
+                        <Form.Item label={"Minimum DSCVR point"} name={"min_point"} rules={[{ required: true, message: "Missing minimum DSCVR points" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item label={"Maximum DSCVR point"} name={"max_point"}>
+                        <Form.Item label={"Maximum DSCVR point"} name={"max_point"} rules={[{ required: true, message: "Missing maximum DSCVR points" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>
@@ -43,7 +43,7 @@ export const PointRuleForm = () => {
 
                 <Row gutter={12}>
                     <Col span={12}>
-                        <Form.Item label={"NFT template"} name={"nft_template_id"}>
+                        <Form.Item label={"NFT template"} name={"nft_template_id"} rules={[{ required: true, message: "Missing template" }]}>
                             <Select size="large" options={templates.map(t => ({
                                 label: t.name,
                                 value: t._id
@@ -51,7 +51,7 @@ export const PointRuleForm = () => {
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item label={"Created user since"} name={"user_create_from"}>
+                        <Form.Item label={"Registered user since"} name={"user_create_from"} rules={[{ required: true, message: "Missing registered user since" }]}>
                             <DatePicker size="large" />
                         </Form.Item>
                     </Col>

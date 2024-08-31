@@ -21,21 +21,29 @@ export const SettingForm = () => {
 
         <Form layout="vertical" initialValues={{ range: [20, 50] }} style={formStyle} onFinish={onFinish}>
             <Card>
-                <Form.Item label={"Name"} name={"name"}>
+                <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>
-                <Form.Item label={"Description"} name={"description"}>
+                <Form.Item label={"Description"} name={"description"} rules={[{ required: true, message: "Missing description" }]}>
                     <Input size="large" />
                 </Form.Item>
-                <Form.Item label={"NFT template"} name={"nft_template_id"}>
-                    <Select size="large" options={templates.map(t => ({
-                        label: t.name,
-                        value: t._id
-                    }))} />
-                </Form.Item>
-                <Form.Item label={"Priority"} name={"priority"}>
-                    <Input size="large" type="number" />
-                </Form.Item>
+                <Row gutter={12}>
+                    <Col span={12}>
+                        <Form.Item label={"NFT template"} name={"nft_template_id"} rules={[{ required: true, message: "Missing template" }]}>
+                            <Select size="large" options={templates.map(t => ({
+                                label: t.name,
+                                value: t._id
+                            }))} />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item label={"Priority"} name={"priority"} rules={[{ required: true, message: "Missing priority" }]}>
+                            <Input size="large" type="number" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+
                 <Form.List name="custom_data">
                     {(fields, { add, remove }) => (
                         <Card title={"Custom data"}>

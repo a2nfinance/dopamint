@@ -19,40 +19,40 @@ export const StreakRuleForm = () => {
     return (
         <Form layout="vertical" initialValues={{ streak_range: [1, 10], min_multiplier: [0, 10] }} onFinish={onFinish} style={formStyle}>
             <Card>
-                <Form.Item label={"Name"} name={"name"}>
+                <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>
-                <Form.Item label={"Description"} name={"description"}>
+                <Form.Item label={"Description"} name={"description"} rules={[{ required: true, message: "Missing description" }]}>
                     <Input size="large" />
                 </Form.Item>
 
                 <Row gutter={12}>
                     <Col span={12}>
-                        <Form.Item label={"Minimum streak"} name={"min_streak"}>
+                        <Form.Item label={"Minimum streak"} name={"min_streak"} rules={[{ required: true, message: "Missing minimum number of streaks" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item label={"Maximum streak"} name={"max_streak"}>
-                            <Input size="large" type="number" />
-                        </Form.Item>
-                    </Col>
-                </Row>
-                <Row gutter={12}>
-                    <Col span={12}>
-                        <Form.Item label={"Minimum mutiplier"} name={"min_mutiplier"}>
-                            <Input size="large" type="number" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                        <Form.Item label={"Maximum mutiplier"} name={"max_mutiplier"}>
+                        <Form.Item label={"Maximum streak"} name={"max_streak"} rules={[{ required: true, message: "Missing maximum number of streaks" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Row gutter={12}>
                     <Col span={12}>
-                        <Form.Item label={"NFT template"} name={"nft_template_id"}>
+                        <Form.Item label={"Minimum mutiplier"} name={"min_mutiplier"} rules={[{ required: true, message: "Missing minimum number of multiplier" }]}>
+                            <Input size="large" type="number" />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item label={"Maximum mutiplier"} name={"max_mutiplier"} rules={[{ required: true, message: "Missing maximum number of multiplier" }]}> 
+                            <Input size="large" type="number" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row gutter={12}>
+                    <Col span={12}>
+                        <Form.Item label={"NFT template"} name={"nft_template_id"} rules={[{ required: true, message: "Missing template" }]}>
                             <Select size="large" options={templates.map(t => ({
                                 label: t.name,
                                 value: t._id
@@ -60,13 +60,13 @@ export const StreakRuleForm = () => {
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item label={"Created user since"} name={"user_create_from"}>
+                        <Form.Item label={"Registered user since"} name={"user_create_from"} rules={[{ required: true, message: "Missing registered user since" }]}>
                             <DatePicker size="large" />
                         </Form.Item>
                     </Col>
                 </Row>
 
-                <Button htmlType="submit" type="primary" block>Submit</Button>
+                <Button htmlType="submit" size="large" type="primary" block>Submit</Button>
             </Card>
 
         </Form>
