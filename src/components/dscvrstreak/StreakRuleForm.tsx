@@ -42,12 +42,12 @@ export const StreakRuleForm = () => {
                 </Row>
                 <Row gutter={12}>
                     <Col span={12}>
-                        <Form.Item label={"Minimum mutiplier"} name={"min_mutiplier"} rules={[{ required: true, message: "Missing minimum number of multiplier" }]}>
+                        <Form.Item label={"Minimum multiplier"} name={"min_multiplier"} rules={[{ required: true, message: "Missing minimum number of multiplier" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item label={"Maximum mutiplier"} name={"max_mutiplier"} rules={[{ required: true, message: "Missing maximum number of multiplier" }]}>
+                        <Form.Item label={"Maximum multiplier"} name={"max_multiplier"} rules={[{ required: true, message: "Missing maximum number of multiplier" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>
