@@ -57,12 +57,13 @@ export function useCanvasClient() {
     }
   }
   const checIsContentCreator = async () => {
+    dispatch(updateActionStatus({ actionName: actionNames.checkingUserFeaturesAction, value: true }));
     if (!client) {
       client = new CanvasClient();
     };
 
     try {
-      dispatch(updateActionStatus({ actionName: actionNames.checkingUserFeaturesAction, value: true }))
+      
       const response = await client.ready();
       const isValidResponse = await validateHostMessage(response);
 
@@ -94,7 +95,7 @@ export function useCanvasClient() {
         let contentRes = await getContentRequest.json();
         let creatorId = contentRes.data.content.creator.id;
         if (creatorId === user?.id) {
-          dispatch(updateUserState([{ key: "isContentCreator", value: true }]));
+          dispatch(updateUserState([{ key: "isContentCreator", value: true }, { key: "user", value: user }]));
         } else {
           let userQuery = `{
             user(id: "${user?.id}") {
@@ -111,7 +112,7 @@ export function useCanvasClient() {
               },
               isFollowing(userId: "${creatorId}")
             } 
-        }`;
+          }`;
 
           let getUserInfoRequest = await fetch(process.env.NEXT_PUBLIC_DSCVR_GRAPHQL!, {
             method: "POST",
@@ -138,14 +139,29 @@ export function useCanvasClient() {
               userInfo: userData
             })
           });
+          let getMintedHistoryRq =  await fetch("/api/history/getByUser", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              user_id: user?.id,
+            })
+          });
 
           let appliedRules = await getAppliedRulesReq.json();
-          dispatch(updateUserState([{ key: "user", value: userData }, {key: "appliedRules", value: appliedRules}]));
+          let mintedNFTs = await getMintedHistoryRq.json();
+          let mintedNFTsMap = {};
+          for(let i = 0; i < mintedNFTs.length; i++) {
+            mintedNFTsMap[`${mintedNFTs[i].template_id}`] = true;
+          }
+          let extraAppliedRules = appliedRules.map(r => ({...r, minted: mintedNFTsMap[`${r._id}`] ?? false }));
+          console.log(extraAppliedRules);
+          dispatch(updateUserState([{ key: "user", value: userData }, {key: "appliedRules", value: extraAppliedRules}]));
 
         }
 
       }
-
 
     } catch (error) {
       console.log("ERROR:", error);

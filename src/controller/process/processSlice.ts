@@ -27,7 +27,7 @@ const initialState: Processes = {
     addPluginDataAction: false,
     createTemplateAction: false,
     loadMyTemplatesAction: false,
-    checkingUserFeaturesAction: true,
+    checkingUserFeaturesAction: false,
     newRuleAction: false,
     loadAllRulesAction: false,
     deleteRuleAction: false,

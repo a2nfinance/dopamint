@@ -12,15 +12,11 @@ export const Features = () => {
     const { checIsContentCreator } = useCanvasClient();
     useEffect(() => {
         checIsContentCreator();
-    }, [])
+    }, [isContentCreator])
     return (
-        <Spin spinning={checkingUserFeaturesAction}>
-
+        <Spin spinning={checkingUserFeaturesAction} style={{textAlign: "center"}}>
             {
-                isContentCreator && <ForCreator />
-            }
-            {
-                !isContentCreator && (user.isFollowing ? <ForFollower /> : <ForNotFollower />)
+                user?.id && (isContentCreator ? <ForCreator /> : (user.isFollowing ? <ForFollower /> : <ForNotFollower />) )
             }
         </Spin>
 

@@ -27,10 +27,13 @@ export const ForFollower = () => {
                     <Flex align="center" className="nft-image-wrapper" vertical={true}>
                         <div className="nft-image-box">
                             <NFTImage src={t.image} />
-                            <Button loading={mintNFTAction} block className="mint-btn" icon={<DeploymentUnitOutlined />}
+                            {
+                                t.minted ? <Button block type="text" size="large" className="mint-btn">Already minted</Button> : <Button loading={mintNFTAction} block className="mint-btn" icon={<DeploymentUnitOutlined />}
                                 type="text" onClick={() => { wallet.connected ? handleMintNFT(wallet, t) : handleConnect() }}>
                                 {wallet.connected ? "Mint" : "Connect to mint"}
                             </Button>
+                            }
+                            
                         </div>
 
                         <Tooltip title={t.description}><p>{t.name}</p></Tooltip>
