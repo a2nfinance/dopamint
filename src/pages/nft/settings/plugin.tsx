@@ -15,7 +15,7 @@ export default function Plugin() {
         },
         {
             key: '2',
-            label: 'New Setting',
+            label: 'New setting',
             children: <SettingForm />,
         }
     ];

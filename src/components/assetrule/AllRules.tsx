@@ -9,7 +9,7 @@ import { DetailTemplate } from "../templates/DetailTemplate";
 import { useCanvasClient } from "@/hooks/useCanvasClient";
 
 export const AllRules = () => {
-    const {initializeCanvas} = useCanvasClient();
+    const { initializeCanvas } = useCanvasClient();
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
     const [selectedId, setSelectedId] = useState("");
@@ -30,11 +30,11 @@ export const AllRules = () => {
         }
     }, [selectedId])
 
-    const handleViewDetail = useCallback(async () => {
-        await getNFTTemplateById(templateId);
+    const handleViewDetail = useCallback(async (nft_template_id) => {
+        await getNFTTemplateById(nft_template_id);
         setIsDetailModalOpen(true);
-    }, [templateId])
-    const openLink = useCallback(async (link:string) => {
+    }, [])
+    const openLink = useCallback(async (link: string) => {
         let state = await initializeCanvas(false);
         state.client?.openLink(link);
     }, [])
@@ -52,10 +52,10 @@ export const AllRules = () => {
                                         {r.description}
                                     </Descriptions.Item>
                                     <Descriptions.Item label={"Metadata URI"}>
-                                        <Button  type="dashed" icon={<EyeOutlined />} onClick={() => openLink(r.metadata_uri)}>View detail</Button>
+                                        <Button type="dashed" icon={<EyeOutlined />} onClick={() => openLink(r.metadata_uri)}>View detail</Button>
                                     </Descriptions.Item>
                                     <Descriptions.Item label={"NFT template"}>
-                                        <Button type="dashed" icon={<EyeOutlined />} onClick={() => { setTemplateId(r.nft_template_id); handleViewDetail() }}>View detail</Button>
+                                        <Button type="dashed" icon={<EyeOutlined />} onClick={() => handleViewDetail(r.nft_template_id)}>View detail</Button>
                                     </Descriptions.Item>
                                 </Descriptions>
                             </Card>

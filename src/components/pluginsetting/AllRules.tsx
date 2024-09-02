@@ -30,10 +30,10 @@ export const AllRules = () => {
         }
     }, [selectedId])
 
-    const handleViewDetail = useCallback(async () => {
-        await getNFTTemplateById(templateId);
+    const handleViewDetail = useCallback(async (nft_template_id) => {
+        await getNFTTemplateById(nft_template_id);
         setIsDetailModalOpen(true);
-    }, [templateId])
+    }, [])
     return (
         <Spin spinning={loadAllRulesAction}>
             <Row gutter={12}>
@@ -58,9 +58,9 @@ export const AllRules = () => {
                                 </Descriptions>
                                 <Divider />
                                 <Descriptions column={2} layout="vertical">
-                                   
+
                                     <Descriptions.Item label={"NFT template"}>
-                                        <Button type="dashed" icon={<EyeOutlined />} onClick={() => { setTemplateId(r.nft_template_id); handleViewDetail() }}>View detail</Button>
+                                        <Button type="dashed" icon={<EyeOutlined />} onClick={() => handleViewDetail(r.nft_template_id)}>View detail</Button>
                                     </Descriptions.Item>
                                     <Descriptions.Item label={"Priority"}>
                                         {r.priority}
