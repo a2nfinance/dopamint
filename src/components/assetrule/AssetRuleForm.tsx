@@ -9,6 +9,7 @@ export const AssetRuleForm = () => {
     const { getNFTTemplates } = useDBTemplate();
     const { saveAssetRule } = useDBAssetRule();
     const { templates } = useAppSelector(state => state.template);
+    const { newRuleAction } = useAppSelector(state => state.process);
     const onFinish = (values: any) => {
         saveAssetRule(values);
     }
@@ -20,7 +21,7 @@ export const AssetRuleForm = () => {
 
         <Form layout="vertical" initialValues={{ range: [20, 50] }} style={formStyle} onFinish={onFinish}>
             <Card>
-                <Alert type="info" message={"Followers can mint new NFTs based on their existing NFTs with specific metadata_uri."} showIcon />
+                <Alert type="info" message={"Followers can mint new NFTs based on their existing NFTs with a specific metadata_uri."} showIcon />
                 <br />
                 <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
@@ -37,7 +38,7 @@ export const AssetRuleForm = () => {
                         value: t._id
                     }))} />
                 </Form.Item>
-                <Button htmlType="submit" type="primary" size="large" block>Submit</Button>
+                <Button loading={newRuleAction} htmlType="submit" type="primary" size="large" block>Submit</Button>
             </Card>
         </Form>
     )

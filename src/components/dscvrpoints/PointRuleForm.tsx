@@ -31,12 +31,12 @@ export const PointRuleForm = () => {
                 </Form.Item>
                 <Row gutter={12}>
                     <Col span={12}>
-                        <Form.Item label={"Minimum DSCVR point"} name={"min_point"} rules={[{ required: true, message: "Missing minimum DSCVR points" }]}>
+                        <Form.Item label={"Minimum points"} name={"min_point"} rules={[{ required: true, message: "Missing minimum DSCVR points" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item label={"Maximum DSCVR point"} name={"max_point"} rules={[{ required: true, message: "Missing maximum DSCVR points" }]}>
+                        <Form.Item label={"Maximum points"} name={"max_point"} rules={[{ required: true, message: "Missing maximum DSCVR points" }]}>
                             <Input size="large" type="number" />
                         </Form.Item>
                     </Col>

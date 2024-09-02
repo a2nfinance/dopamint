@@ -37,7 +37,7 @@ export const GenerateImageForm = () => {
                                 { label: "Dall-e-3", value: "dall-e-3" },
                             ]} onChange={(value) => setSelectedModel(value)} />
                         </Form.Item>
-                        <Form.Item help={`You can use your own OpenAI project API key. If you use the default API key, services can be unavailable due to a limited rates.`} 
+                        <Form.Item help={`You can use your own OpenAI project API key. If you use the default API key, services may be unavailable due to limited rates.`} 
                         label={"Your OpenAI project key"} 
                         name={"open_api_key"}>
                             <Input size="large" />

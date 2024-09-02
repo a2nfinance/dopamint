@@ -10,6 +10,7 @@ export const SettingForm = () => {
     const { getNFTTemplates } = useDBTemplate();
     const { savePluginSetting } = useDBPluginSetting();
     const { templates } = useAppSelector(state => state.template);
+    const { newRuleAction } = useAppSelector(state => state.process);
     const onFinish = (values: any) => {
         savePluginSetting(values);
     }
@@ -19,10 +20,10 @@ export const SettingForm = () => {
     }, [])
     return (
 
-        <Form layout="vertical" initialValues={{ range: [20, 50] }} style={formStyle} onFinish={onFinish}>
+        <Form layout="vertical" initialValues={{ priority: 0 }} style={formStyle} onFinish={onFinish}>
             <Card>
-            <Alert type="info" message={"Followers can mint new NFTs using the AppData plugin settings."} showIcon />
-            <br />
+                <Alert type="info" message={"Followers can mint new NFTs using the AppData plugin settings."} showIcon />
+                <br />
                 <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
                 </Form.Item>
@@ -95,7 +96,7 @@ export const SettingForm = () => {
                     )}
                 </Form.List>
                 <Divider />
-                <Button htmlType="submit" type="primary" size="large" block>Submit</Button>
+                <Button htmlType="submit" type="primary" size="large" block loading={newRuleAction}>Submit</Button>
             </Card>
         </Form>
     )

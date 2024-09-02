@@ -18,7 +18,7 @@ export const TemplateForm = () => {
 
         <Form layout="vertical" onFinish={onFinish} style={formStyle}>
             <Card>
-                <Alert type="info" message={"NFT templates are uploaded to decentralized storage and will be used if followers mint new NFTs."} showIcon />
+                <Alert type="info" message={"NFT templates are uploaded to decentralized storage and will be used when followers mint new NFTs."} showIcon />
                 <br />
                 <Form.Item label="Name" name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input placeholder="Name" size="large" />
@@ -51,7 +51,7 @@ export const TemplateForm = () => {
                         </Form.Item>
                     </Col>
                 </Row>
-                <Button htmlType="submit" size="large" type="primary" loading={createTemplateAction} block>Upload to decentralized storage</Button>
+                <Button htmlType="submit" size="large" type="primary" loading={createTemplateAction} block>Submit</Button>
             </Card>
         </Form>
     )

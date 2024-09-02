@@ -9,6 +9,7 @@ import { useEffect } from "react";
 export const StreakRuleForm = () => {
     const { getNFTTemplates } = useDBTemplate();
     const { templates } = useAppSelector(state => state.template);
+    const { newRuleAction } = useAppSelector(state => state.process);
     const { saveStreakRule } = useDBStreakRule()
     const onFinish = (values: any) => {
         saveStreakRule(values);
@@ -19,7 +20,7 @@ export const StreakRuleForm = () => {
     return (
         <Form layout="vertical" initialValues={{ streak_range: [1, 10], min_multiplier: [0, 10] }} onFinish={onFinish} style={formStyle}>
             <Card>
-                <Alert type="info" message={"Followers can mint new NFTs based on their streak and multiplier"} showIcon />
+                <Alert type="info" message={"Followers can mint new NFTs based on their streak and multiplier."} showIcon />
                 <br />
                 <Form.Item label={"Name"} name={"name"} rules={[{ required: true, message: "Missing name" }]}>
                     <Input size="large" />
@@ -68,7 +69,7 @@ export const StreakRuleForm = () => {
                     </Col>
                 </Row>
 
-                <Button htmlType="submit" size="large" type="primary" block>Submit</Button>
+                <Button loading={newRuleAction} htmlType="submit" size="large" type="primary" block>Submit</Button>
             </Card>
 
         </Form>
