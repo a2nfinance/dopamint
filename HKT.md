@@ -1,5 +1,5 @@
 ### 0. Vision
-Transform it into a fully-fledged application that supports content creators in incentivizing their followers and running marketing campaigns using exclusive NFTs.
+Transform DopaMint into a fully-fledged application that supports content creators in incentivizing their followers with configurable exclusive NFTs.
 
 ### 1. Overview
 
@@ -52,7 +52,7 @@ DopaMint application contains four main modules:
 ### 5. Challenges we ran into
 - **Challenge 01 - Reusing Metaplex Libraries for the Canvas Application:** In the first stage of DopaMint development, we did not want to code and handle each wallet interaction and transaction from scratch. So, we integrated Metaplex UMI, the Solana wallet adapter, and the Canvas wallet into DopaMint. There were some issues when the libraries were not fully compatible with each other, both in terms of UI and UX. To address these, we implemented solutions such as preselecting the Canvas wallet right after it is registered and customizing `useCanvasClient` and `useUMI` hooks to make the features compatible.
 
-- **Challenge 02 - UX for a Complex Canvas Application:** We designed pages to run on a horizontal mobile screen, and large images are used to describe features. The data flow of the pages is consistent and managed by the Redux framework, ensuring that application data and user interaction feedback are updated simultaneously. Our solutions are not yet fully complete, but they provide an acceptable UX.
+- **Challenge 02 - UX for a Complex Canvas Application:** We designed pages to run on a mobile screen, and large images are used to describe features. The data flow of the pages is consistent and managed by the Redux framework, ensuring that application data and user interaction feedback are updated simultaneously. Our solutions are not yet fully complete, but they provide an acceptable UX.
 
 - **Challenge 03 - Metaplex's Complex Features:** Metaplex has many features and libraries. During the hackathon, we had to read and learn from many documents to understand how to use Metaplex properly. We decided to implement the most important features first, which were at the top of the recommended ideas.
 
