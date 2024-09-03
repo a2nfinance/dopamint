@@ -5,13 +5,15 @@ export type UserState = {
     isContentCreator: boolean,
     user: any,
     appliedRules: any,
+    creatorId: any
 }
 
 
 const initialUserState: UserState = {
     isContentCreator: false,
     user: {},
-    appliedRules: []
+    appliedRules: [],
+    creatorId: ""
 }
 
 export const userSlice = createSlice({

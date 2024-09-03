@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/controller/hooks";
+import { useAppDispatch, useAppSelector } from "@/controller/hooks";
 import { actionNames, updateActionStatus } from "@/controller/process/processSlice";
 import { updateUserState } from "@/controller/user/userSlice";
 import { validateHostMessage } from "@/lib/dscvr";
@@ -16,6 +16,7 @@ type CanvasState = {
 var client: CanvasClient;
 export function useCanvasClient() {
   const dispatch = useAppDispatch();
+  const {user, appliedRules} = useAppSelector(state => state.user);
   const [state, setState] = useState<CanvasState>({
     client: undefined,
     user: undefined,
@@ -157,7 +158,11 @@ export function useCanvasClient() {
           }
           let extraAppliedRules = appliedRules.map(r => ({...r, minted: mintedNFTsMap[`${r._id}`] ?? false }));
           console.log(extraAppliedRules);
-          dispatch(updateUserState([{ key: "user", value: userData }, {key: "appliedRules", value: extraAppliedRules}]));
+          dispatch(updateUserState([
+            { key: "user", value: userData }, 
+            { key: "appliedRules", value: extraAppliedRules },
+            { key: "creatorId", value: creatorId}
+          ]));
 
         }
 
@@ -180,5 +185,25 @@ export function useCanvasClient() {
     document.body.style.height = "auto";
   }
 
-  return { state, initializeCanvas, checIsContentCreator, destroyClient, resizeObserver };
+  const getAppliedRules = async () => {
+          console.log(user, appliedRules);
+          let getMintedHistoryRq =  await fetch("/api/history/getByUser", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              user_id: user?.id,
+            })
+          });
+
+          let mintedNFTs = await getMintedHistoryRq.json();
+          let mintedNFTsMap = {};
+          for(let i = 0; i < mintedNFTs.length; i++) {
+            mintedNFTsMap[`${mintedNFTs[i].template_id}`] = true;
+          }
+          let extraAppliedRules = appliedRules.map(r => ({...r, minted: mintedNFTsMap[`${r._id}`] ?? false }));
+          dispatch(updateUserState([{key: "appliedRules", value: extraAppliedRules}]));
+  }
+  return { state, initializeCanvas, checIsContentCreator, destroyClient, resizeObserver, getAppliedRules };
 }

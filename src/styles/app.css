@@ -23,7 +23,8 @@
 .nft-image-wrapper .nft-image-box .mint-btn {
     position: absolute;
     bottom: 4px;
-    background-color: rgba(245, 245, 245, 0.3);
+    background-color: rgba(245, 245, 245, 0.4);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    color: whitesmoke;
 }

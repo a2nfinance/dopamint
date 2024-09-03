@@ -20,7 +20,7 @@ const txConfig: TransactionBuilderSendAndConfirmOptions = {
 };
 let umi: Umi;
 export const useUMI = () => {
-    const { initializeCanvas, state } = useCanvasClient();
+    const { initializeCanvas, state, getAppliedRules } = useCanvasClient();
     const { getPluginsByTemplateId } = useDBPluginSetting();
     const dispatch = useAppDispatch();
 
@@ -112,7 +112,7 @@ export const useUMI = () => {
                     let res = await req.json();
                     console.log(res);
                 }
-
+                getAppliedRules();
             }
 
 
