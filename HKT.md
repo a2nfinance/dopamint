@@ -12,6 +12,45 @@ Our project integrates MetaPlex CORE with the DSCVR ecosystem using the Canvas a
 - [Video demo]()
 - [Github](https://github.com/a2nfinance/dopamint)
 
+<details>
+  <summary>Click here to see demo screenshots</summary>
+
+| ![homepage.png](https://dopamint.a2n.finance/screenshot/homepage.png) | 
+|:--:| 
+| *Content creators - All features* |
+ 
+| ![nft_templates.png](https://dopamint.a2n.finance/screenshot/nft_templates.png) | 
+|:--:| 
+| *Content creators - NFT templates* |
+
+| ![nft_template_form.png](https://dopamint.a2n.finance/screenshot/new_template_form.png) | 
+|:--:| 
+| *Content creators - New template form* |
+
+| ![new_dscvr_point_rule.png](https://dopamint.a2n.finance/screenshot/new_dscvr_point_rule.png) | 
+|:--:| 
+| *Content creators - New DSCVR points-based rule form* |
+
+| ![new_streak_rule.png](https://dopamint.a2n.finance/screenshot/new_streak_rule.png) | 
+|:--:| 
+| *Content creators - New DSCVR streak-based rule form* |
+
+| ![new_asset_rule.png](https://dopamint.a2n.finance/screenshot/new_asset_rule.png) | 
+|:--:| 
+| *Content creators - New existing asset-based rule form* |
+
+| ![plugin_setting_form.png](https://dopamint.a2n.finance/screenshot/plugin_setting_form.png) | 
+|:--:| 
+| *Content creators - New AppData plugin setting* |
+
+| ![ai_tool_generated_image.png](https://dopamint.a2n.finance/screenshot/ai_tool_generated_image.png) | 
+|:--:| 
+| *Content creators - Generated images by AI tools* |  
+
+| ![follower_nfts.png](https://dopamint.a2n.finance/screenshot/follower_nfts.png) | 
+|:--:| 
+| *Followers - All NFTs match the content creator's rules* |
+ </details>
 
 ### 3. Features
 ![creator_features](/public/docs/creator_features.png)
