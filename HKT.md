@@ -53,7 +53,7 @@ Our project integrates MetaPlex CORE with the DSCVR ecosystem using the Canvas a
  </details>
 
 ### 3. Features
-![creator_features](/public/docs/creator_features.png)
+![creator_features](https://dopamint.a2n.finance/docs/creator_features.png)
 ### Features for Content Creators
 
 - **NFT Templates Management:** Content creators can create multiple templates. All template data is stored in the cloud database and on decentralized storage.
@@ -70,7 +70,7 @@ Our project integrates MetaPlex CORE with the DSCVR ecosystem using the Canvas a
 Followers can mint exclusive NFTs based on content creators' configured rules.
 
 ### 4. Architecture
-![architecture](/public/docs/Architecture.jpg)
+![architecture](https://dopamint.a2n.finance/docs/Architecture.jpg)
 
 DopaMint application contains four main modules:
 
