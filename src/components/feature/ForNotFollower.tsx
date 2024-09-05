@@ -21,7 +21,7 @@ export const ForNotFollower = () => {
             </Flex>
 
             <Modal title="Access exclusive NFTs" open={isModalOpen} footer={false} onCancel={() => setIsModalOpen(false)}>
-                <p>Follow this content creator to see what exclusive NFTs you can mint!</p>
+                <p>Follow this content creator to see which exclusive NFTs you can mint!</p>
             </Modal>
         </>
     )
