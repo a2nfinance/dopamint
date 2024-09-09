@@ -16,11 +16,12 @@ const uploadJsonFile = async (url: string, name = "asset", fileType = "png", bod
     const umiUploader = new Uploader(umi);
     let uploadedImageUri = url;
 
-    if (!url.includes("arweave.net")) {
+    if (!url.includes("arweave.net") && !url.includes("devnet.irys.xyz")) {
         const response = await fetch(url);
         const data: Blob = await response.blob();
         const bufferData = Buffer.from(await data.arrayBuffer());
         uploadedImageUri = await umiUploader.uploadImage(bufferData, name || "asset", fileType || "png");
+        uploadedImageUri = uploadedImageUri.replace("arweave.net", `${process.env.STORAGE_GATEWAY_API!}`)
     }
 
 
@@ -55,7 +56,7 @@ const uploadJsonFile = async (url: string, name = "asset", fileType = "png", bod
             "category": "nft"
         }
     })
-    console.log("jsonURI:", jsonURI);
+    jsonURI = jsonURI.replace("arweave.net", `${process.env.STORAGE_GATEWAY_API!}`)
     return jsonURI;
 }
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

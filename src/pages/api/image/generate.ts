@@ -22,6 +22,7 @@ const uploadImage = async (url: string) => {
     umi.use(mplCore()).use(irysUploader());
     const umiUploader = new Uploader(umi);
     let uploadedImageUri = await umiUploader.uploadImage(bufferData, "generated_image", "jpg");
+    uploadedImageUri = uploadedImageUri.replace("arweave.net", `${process.env.STORAGE_GATEWAY_API!}`)
     return uploadedImageUri;
 }
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
