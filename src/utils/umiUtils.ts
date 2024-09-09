@@ -1,3 +1,4 @@
+import { mplCore } from "@metaplex-foundation/mpl-core";
 import {
     createNoopSigner,
     createSignerFromKeypair,
@@ -8,7 +9,7 @@ import {
     UmiPlugin,
   } from "@metaplex-foundation/umi";
   import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
-  import { bundlrUploader } from "@metaplex-foundation/umi-uploader-bundlr";
+  import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
   import {
     Connection,
     Keypair,
@@ -19,11 +20,8 @@ import {
   
   export const buildUmiUploader = (rpcUrl: string, secretKey: any[]): Umi => {
     const umi = createUmi(rpcUrl).use(
-      bundlrUploader({
-        providerUrl: rpcUrl,
-        timeout: 60000,
-      })
-    );
+      irysUploader()
+    ).use(mplCore());
     loadUmiKeypair(umi, new Uint8Array(secretKey));
     return umi;
   };

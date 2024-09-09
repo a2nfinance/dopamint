@@ -1,15 +1,15 @@
 import {
-    toMetaplexFile,
-    toMetaplexFileFromJson,
-  } from "@metaplex-foundation/js";
-  import { Umi } from "@metaplex-foundation/umi";
+  toMetaplexFile,
+  toMetaplexFileFromJson
+} from "@metaplex-foundation/js";
+import { Umi } from "@metaplex-foundation/umi";
   
   export class Uploader {
     umi: Umi;
     constructor(umi: Umi) {
       this.umi = umi;
     }
-  
+    
     async uploadImage(imageBuffer: Buffer, name,  fileType) {
       const file = toMetaplexFile(imageBuffer, `${name}.${fileType}`, {
         displayName: name,
