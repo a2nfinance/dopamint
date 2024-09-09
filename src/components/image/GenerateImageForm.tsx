@@ -1,14 +1,16 @@
 import { useAppSelector } from "@/controller/hooks";
+import { useCanvasClient } from "@/hooks/useCanvasClient";
 import { useDBGeneratedImage } from "@/hooks/useDBGeneratedImage";
 import { Button, Card, Col, Form, Input, Row, Select } from "antd";
-import { GeneratedImages } from "./GeneratedImages";
 import { useState } from "react";
+import { GeneratedImages } from "./GeneratedImages";
 
 export const GenerateImageForm = () => {
+    const { initializeCanvas, state } = useCanvasClient();
     const { generateImage } = useDBGeneratedImage()
     const { image } = useAppSelector(state => state.image);
     const { generateImageAction } = useAppSelector(state => state.process);
-    const [selectedModel, setSelectedModel] = useState();
+    const [selectedModel, setSelectedModel] = useState("dall-e-2");
     const onFinish = (values: any) => {
         generateImage(values);
     }
@@ -23,6 +25,21 @@ export const GenerateImageForm = () => {
         { label: "1024x1792", value: "1024x1792" },
         { label: "1792x1024", value: "1792x1024" }
     ]
+
+    const doCopy = async (url: string) => {
+        try {
+            if (!state.client) {
+                let newState = await initializeCanvas(false);
+                await newState.client?.copyToClipboard(url);
+
+            } else {
+               await state.client?.copyToClipboard(url);
+            }
+        } catch(e) {
+            console.log(e);
+        }
+        
+    }
     return (
         <Row gutter={12}>
             <Col span={12}>
@@ -54,7 +71,7 @@ export const GenerateImageForm = () => {
                 </Form>
             </Col>
             <Col span={12}>
-                {image ? <GeneratedImages image={image} /> : <Card loading={generateImageAction}></Card>}
+                {image ? <GeneratedImages doCopy={doCopy} image={image} /> : <Card loading={generateImageAction} style={{minHeight: "100px"}}></Card>}
             </Col>
 
         </Row>
