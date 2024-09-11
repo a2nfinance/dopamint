@@ -2,9 +2,9 @@
 DopaMint integrates MetaPlex CORE with the DSCVR ecosystem using the Canvas application. Content creators can create rules based on specific conditions, and followers who meet these conditions can mint specific NFTs.
 ## Demo information
 - DopaMint Canvas Application
-  - [For Followers]()
   - For content creators: Please create a post with the content being this address: `https://dopamint.a2n.finance`.
-- [Video demo](https://www.youtube.com/watch?v=2WA4zUJgeZg)
+  - [For Followers]()
+- [Video demo](https://www.youtube.com/watch?v=kyVQIwnfSB8)
 - [Github](https://github.com/a2nfinance/dopamint)
 
 <details>
