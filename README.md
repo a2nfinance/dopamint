@@ -3,7 +3,7 @@ DopaMint integrates MetaPlex CORE with the DSCVR ecosystem using the Canvas appl
 ## Demo information
 - DopaMint Canvas Application
   - For content creators: Please create a post with the content being this address: `https://dopamint.a2n.finance`.
-  - [For Followers]()
+  - [For Followers](https://dscvr.one/post/1201336802623881369)
 - [Video demo](https://www.youtube.com/watch?v=kyVQIwnfSB8)
 - [Github](https://github.com/a2nfinance/dopamint)
 

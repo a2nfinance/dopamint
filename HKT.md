@@ -8,12 +8,14 @@ Our project integrates MetaPlex CORE with the DSCVR ecosystem using the Canvas a
 ### 2. Demo information 
 - DopaMint Canvas Application
   - For content creators: Please create a post with the content being this address: `https://dopamint.a2n.finance`.
-  - [For Followers]()
+  - [For Followers](https://dscvr.one/post/1201336802623881369)
 - [Video demo](https://www.youtube.com/watch?v=kyVQIwnfSB8)
 - [Github](https://github.com/a2nfinance/dopamint)
 
 <details>
-  <summary>Click here to see demo screenshots</summary>
+  <summary>
+    <b> >>>Click here to see demo screenshots</b>
+  </summary>
 
 | ![homepage.png](https://dopamint.a2n.finance/screenshot/homepage.png) | 
 |:--:| 
@@ -50,6 +52,7 @@ Our project integrates MetaPlex CORE with the DSCVR ecosystem using the Canvas a
 | ![follower_nfts.png](https://dopamint.a2n.finance/screenshot/follower_nfts.png) | 
 |:--:| 
 | *Followers - All NFTs match the content creator's rules* |
+
  </details>
 
 ### 3. Features
